@@ -6,6 +6,8 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "backgroundColor": "#FAFAFA",
+    "primaryColor": "#1746A2",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -27,8 +29,6 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": [
-      "expo-font"
-    ]
+    "plugins": ["expo-font"]
   }
 }
