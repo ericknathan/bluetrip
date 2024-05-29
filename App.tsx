@@ -5,7 +5,6 @@ import {
   Poppins_400Regular,
   Poppins_500Medium,
   Poppins_600SemiBold,
-  Poppins_700Bold,
   useFonts,
 } from "@expo-google-fonts/poppins";
 import { NavigationContainer } from "@react-navigation/native";
@@ -34,10 +33,22 @@ export default function App() {
 
   return (
     <View
-      style={{ flex: 1, backgroundColor: theme.zinc[50] }}
+      style={{ flex: 1 }}
       onLayout={onLayoutRootView}
     >
-      <NavigationContainer>
+      <NavigationContainer
+        theme={{
+          colors: {
+            background: theme.zinc[50],
+            border: theme.zinc[200],
+            card: theme.white,
+            primary: theme.primary[500],
+            text: theme.zinc[900],
+            notification: theme.primary[500],
+          },
+          dark: false,
+        }}
+      >
         <Router />
         <StatusBar style="auto" />
       </NavigationContainer>
