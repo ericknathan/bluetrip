@@ -42,7 +42,10 @@ export function SignInScreen({ navigation }: ScreenProps<"SignIn">) {
           autoCapitalize="none"
           autoComplete="current-password"
         />
-        <TouchableOpacity style={{ paddingVertical: 12 }}>
+        <TouchableOpacity
+          style={{ paddingVertical: 12 }}
+          onPress={() => navigation.navigate("RecoverPassword")}
+        >
           <Text
             color={theme.primary[500]}
             style={{ textDecorationLine: "underline" }}
