@@ -1,4 +1,5 @@
 import { theme } from "@/styles";
+import { useNavigation } from "@react-navigation/native";
 import { CaretLeft } from "phosphor-react-native";
 import { StatusBar, StyleSheet, View } from "react-native";
 import { Button } from "./Button";
@@ -11,6 +12,8 @@ type HeaderProps = {
 };
 
 export function Header({ title, showBackButton = false }: HeaderProps) {
+  const navigation = useNavigation();
+
   return (
     <View
       style={[
@@ -29,7 +32,11 @@ export function Header({ title, showBackButton = false }: HeaderProps) {
         </Text>
       )}
       {showBackButton && (
-        <Button variant="ghost" style={{ width: 48 }}>
+        <Button
+          variant="ghost"
+          style={{ width: 48 }}
+          onPress={navigation.goBack}
+        >
           <CaretLeft color={theme.zinc[900]} />
         </Button>
       )}
