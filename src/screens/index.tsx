@@ -1,3 +1,4 @@
+import { AppNavigation } from "@/navigation";
 import { fontFamily, theme } from "@/styles";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
@@ -23,7 +24,7 @@ import {
   TouristSpotsScreen,
 } from "./private";
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<AppNavigation>();
 
 export function Router() {
   return (
