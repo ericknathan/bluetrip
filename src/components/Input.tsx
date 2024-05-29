@@ -2,7 +2,6 @@ import { Eye, EyeClosed } from "phosphor-react-native";
 import { useState } from "react";
 import {
   StyleSheet,
-  Text,
   TextInput,
   TextInputProps,
   TouchableOpacity,
@@ -10,12 +9,15 @@ import {
 } from "react-native";
 
 import { fontFamily, theme } from "@/styles";
+import { Label } from "./Label";
+import { Text } from "./Text";
 
 interface InputProps extends TextInputProps {
+  label?: string;
   error?: string;
 }
 
-export function Input({ error, secureTextEntry, ...props }: InputProps) {
+export function Input({ label, error, secureTextEntry, ...props }: InputProps) {
   const [isSecure, setIsSecure] = useState(secureTextEntry);
   const SecureIcon = isSecure ? EyeClosed : Eye;
 
@@ -24,24 +26,27 @@ export function Input({ error, secureTextEntry, ...props }: InputProps) {
   }
 
   return (
-    <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholderTextColor={theme.zinc[400]}
-        secureTextEntry={isSecure}
-        selectionColor={theme.primary.opaque}
-        selectionHandleColor={theme.primary[500]}
-        {...props}
-      />
-      {secureTextEntry && (
-        <TouchableOpacity
-          style={styles.visibilityButton}
-          onPress={toggleSecure}
-        >
-          <SecureIcon size={20} color={theme.zinc[400]} />
-        </TouchableOpacity>
-      )}
-      {error && <Text style={styles.error}>{error}</Text>}
+    <View>
+      {label ? <Label>{label}</Label> : null}
+      <View style={styles.container}>
+        <TextInput
+          style={styles.input}
+          placeholderTextColor={theme.zinc[400]}
+          secureTextEntry={isSecure}
+          selectionColor={theme.primary.opaque}
+          selectionHandleColor={theme.primary[500]}
+          {...props}
+        />
+        {secureTextEntry && (
+          <TouchableOpacity
+            style={styles.visibilityButton}
+            onPress={toggleSecure}
+          >
+            <SecureIcon size={20} color={theme.zinc[400]} />
+          </TouchableOpacity>
+        )}
+        {error && <Text style={styles.error}>{error}</Text>}
+      </View>
     </View>
   );
 }
