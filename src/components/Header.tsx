@@ -19,7 +19,6 @@ export function Header({ title, showBackButton = false }: HeaderProps) {
       style={[
         styles.header,
         {
-          marginTop: StatusBar.currentHeight,
           justifyContent:
             !showBackButton && !title ? "center" : "space-between",
         },

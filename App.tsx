@@ -32,10 +32,7 @@ export default function App() {
   }
 
   return (
-    <View
-      style={{ flex: 1 }}
-      onLayout={onLayoutRootView}
-    >
+    <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
       <NavigationContainer
         theme={{
           colors: {
@@ -50,7 +47,11 @@ export default function App() {
         }}
       >
         <Router />
-        <StatusBar style="auto" />
+        <StatusBar
+          style="auto"
+          translucent={false}
+          backgroundColor={theme.zinc[50]}
+        />
       </NavigationContainer>
     </View>
   );
