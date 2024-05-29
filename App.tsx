@@ -3,6 +3,7 @@ import { View } from "react-native";
 
 import {
   Poppins_400Regular,
+  Poppins_500Medium,
   Poppins_600SemiBold,
   Poppins_700Bold,
   useFonts,
@@ -17,8 +18,8 @@ import { Router } from "./src/screens";
 export default function App() {
   let [fontsLoaded, fontError] = useFonts({
     text_regular: Poppins_400Regular,
+    text_medium: Poppins_500Medium,
     text_semibold: Poppins_600SemiBold,
-    text_bold: Poppins_700Bold,
   });
 
   const onLayoutRootView = useCallback(async () => {

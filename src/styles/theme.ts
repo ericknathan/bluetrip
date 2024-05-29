@@ -30,6 +30,6 @@ export const theme = {
 
 export const fontFamily = {
   regular: "text_regular",
+  medium: "text_medium",
   semibold: "text_semibold",
-  bold: "text_bold",
 };
