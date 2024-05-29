@@ -28,7 +28,7 @@ dependencies:
     version: 1.12.1
   phosphor-react-native:
     specifier: ^2.0.0
-    version: 2.0.0(react-native-svg@15.3.0)(react-native@0.74.1)(react@18.2.0)
+    version: 2.0.0(react-native-svg@15.2.0)(react-native@0.74.1)(react@18.2.0)
   react:
     specifier: 18.2.0
     version: 18.2.0
@@ -41,6 +41,9 @@ dependencies:
   react-native-screens:
     specifier: 3.31.1
     version: 3.31.1(react-native@0.74.1)(react@18.2.0)
+  react-native-svg:
+    specifier: 15.2.0
+    version: 15.2.0(react-native@0.74.1)(react@18.2.0)
 
 devDependencies:
   '@babel/core':
@@ -5979,7 +5982,7 @@ packages:
     engines: {node: '>=8'}
     dev: false
 
-  /phosphor-react-native@2.0.0(react-native-svg@15.3.0)(react-native@0.74.1)(react@18.2.0):
+  /phosphor-react-native@2.0.0(react-native-svg@15.2.0)(react-native@0.74.1)(react@18.2.0):
     resolution: {integrity: sha512-Q1WtmdFKq5w0rJAZMvYDzUBAHzL1s41Rc3cn3uTutQcLAo81Vjv/X2Im0bxET7is+70R4WDCPf+ZQEoOhaC5Vw==}
     peerDependencies:
       react: '*'
@@ -5990,7 +5993,7 @@ packages:
       caniuse-lite: 1.0.30001625
       react: 18.2.0
       react-native: 0.74.1(@babel/core@7.24.6)(@babel/preset-env@7.24.6)(@types/react@18.2.79)(react@18.2.0)
-      react-native-svg: 15.3.0(react-native@0.74.1)(react@18.2.0)
+      react-native-svg: 15.2.0(react-native@0.74.1)(react@18.2.0)
     dev: false
 
   /picocolors@1.0.1:
@@ -6223,8 +6226,8 @@ packages:
       warn-once: 0.1.1
     dev: false
 
-  /react-native-svg@15.3.0(react-native@0.74.1)(react@18.2.0):
-    resolution: {integrity: sha512-mBHu/fdlzUbpGX8SZFxgbKvK/sgqLfDLP8uh8G7Us+zJgdjO8OSEeqHQs+kPRdQmdLJQiqPJX2WXgCl7ToTWqw==}
+  /react-native-svg@15.2.0(react-native@0.74.1)(react@18.2.0):
+    resolution: {integrity: sha512-R0E6IhcJfVLsL0lRmnUSm72QO+mTqcAOM5Jb8FVGxJqX3NfJMlMP0YyvcajZiaRR8CqQUpEoqrY25eyZb006kw==}
     peerDependencies:
       react: '*'
       react-native: '*'
