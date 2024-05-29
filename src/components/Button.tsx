@@ -10,7 +10,7 @@ import {
 import { fontFamily, theme } from "@/styles";
 
 interface ButtonProps extends TouchableOpacityProps {
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "ghost";
   icon?: Icon;
   isLoading?: boolean;
 }
@@ -73,6 +73,10 @@ const styles = StyleSheet.create({
     backgroundColor: theme.zinc[50],
     borderColor: theme.primary[500],
   },
+  ghost: {
+    backgroundColor: theme.zinc[100],
+    borderColor: theme.zinc[200],
+  },
 });
 
 const textStyles = StyleSheet.create({
@@ -85,5 +89,8 @@ const textStyles = StyleSheet.create({
   },
   secondary: {
     color: theme.primary[500],
+  },
+  ghost: {
+    color: theme.zinc[900],
   },
 });
