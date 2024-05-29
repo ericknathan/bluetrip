@@ -14,6 +14,9 @@ import { StatusBar } from "expo-status-bar";
 import { theme } from "@/styles";
 import { Router } from "./src/screens";
 
+import { LogBox } from "react-native";
+LogBox.ignoreAllLogs();
+
 export default function App() {
   let [fontsLoaded, fontError] = useFonts({
     text_regular: Poppins_400Regular,
