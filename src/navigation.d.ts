@@ -3,9 +3,9 @@ import { NavigationProp, RouteProp } from "@react-navigation/native";
 export type AppNavigation = {
   App: undefined;
   Welcome: undefined;
-  SignIn: undefined;
+  SignIn: { email: string } | undefined;
   SignUp: undefined;
-  RecoverPassword: undefined;
+  RecoverPassword: { email: string } | undefined;
   TouristSpots: undefined;
   Events: undefined;
   Commerces: undefined;

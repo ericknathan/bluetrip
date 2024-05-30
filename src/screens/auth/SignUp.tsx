@@ -11,17 +11,20 @@ import {
   Text,
 } from "@/components";
 import { CountrySelector } from "@/components/CountrySelector";
+import { DatePicker } from "@/components/DatePicker";
 import type { ScreenProps } from "@/navigation";
 import { signUpSchema, type SignUpSchema } from "./validators";
-import { DatePicker } from "@/components/DatePicker";
 
 export function SignUpScreen({ navigation }: ScreenProps<"SignUp">) {
   const { control, handleSubmit, setValue } = useForm<SignUpSchema>({
     resolver: zodResolver(signUpSchema),
   });
 
-  function onSignUp() {
-    navigation.navigate("SignIn");
+  function onSignUp(data: SignUpSchema) {
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "Welcome" }, { name: "SignIn", params: data }],
+    });
   }
 
   return (

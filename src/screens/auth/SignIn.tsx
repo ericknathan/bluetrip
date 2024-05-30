@@ -13,14 +13,20 @@ import type { ScreenProps } from "@/navigation";
 import { theme } from "@/styles";
 import { SignInSchema, signInSchema } from "./validators";
 
-export function SignInScreen({ navigation }: ScreenProps<"SignIn">) {
-  const { handleSubmit, control } = useForm<SignInSchema>({
+export function SignInScreen({ route, navigation }: ScreenProps<"SignIn">) {
+  const { handleSubmit, control, getValues } = useForm<SignInSchema>({
     resolver: zodResolver(signInSchema),
+    defaultValues: {
+      email: route.params?.email ?? "",
+    },
   });
 
   function onSignIn(data: SignInSchema) {
     // TODO: send request to backend
-    navigation.navigate("App");
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "App" }],
+    });
   }
 
   return (
@@ -57,7 +63,11 @@ export function SignInScreen({ navigation }: ScreenProps<"SignIn">) {
         />
         <TouchableOpacity
           style={{ paddingVertical: 12 }}
-          onPress={() => navigation.navigate("RecoverPassword")}
+          onPress={() =>
+            navigation.navigate("RecoverPassword", {
+              email: getValues("email"),
+            })
+          }
         >
           <Text
             color={theme.primary[500]}
@@ -68,7 +78,12 @@ export function SignInScreen({ navigation }: ScreenProps<"SignIn">) {
         </TouchableOpacity>
         <Button onPress={handleSubmit(onSignIn)}>Fazer login</Button>
         <Button
-          onPress={() => navigation.navigate("SignUp")}
+          onPress={() =>
+            navigation.reset({
+              index: 0,
+              routes: [{ name: "Welcome" }, { name: "SignUp" }],
+            })
+          }
           variant="secondary"
           style={{ marginTop: 8 }}
         >

@@ -10,14 +10,21 @@ import {
 } from "./validators";
 
 export function RecoverPasswordScreen({
+  route,
   navigation,
 }: ScreenProps<"RecoverPassword">) {
   const { control, handleSubmit } = useForm<RecoverPasswordSchema>({
     resolver: zodResolver(recoverPasswordSchema),
+    defaultValues: {
+      email: route.params?.email ?? "",
+    },
   });
 
   function onRecoverPassword(data: RecoverPasswordSchema) {
-    navigation.navigate("SignIn");
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "Welcome" }, { name: "SignIn", params: data }],
+    });
   }
 
   return (
@@ -41,6 +48,7 @@ export function RecoverPasswordScreen({
           keyboardType="email-address"
           autoComplete="email"
           autoFocus
+          autoCapitalize="none"
         />
         <Button onPress={handleSubmit(onRecoverPassword)}>
           Enviar e-mail de recuperação
