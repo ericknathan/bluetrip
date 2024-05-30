@@ -5,5 +5,6 @@ export * from "./Header";
 export * from "./Input";
 export * from "./Label";
 export * from "./Logo";
+export * from "./SearchBar";
 export * from "./SelectGroup";
 export * from "./Text";
