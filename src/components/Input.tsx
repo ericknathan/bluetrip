@@ -15,9 +15,16 @@ import { Label } from "./Label";
 export interface InputProps extends TextInputProps {
   label?: string;
   error?: string;
+  hideErrorMessage?: boolean;
 }
 
-export function Input({ label, error, secureTextEntry, ...props }: InputProps) {
+export function Input({
+  label,
+  error,
+  secureTextEntry,
+  hideErrorMessage = false,
+  ...props
+}: InputProps) {
   const [isSecure, setIsSecure] = useState(secureTextEntry);
   const SecureIcon = isSecure ? EyeClosed : Eye;
 
@@ -26,7 +33,7 @@ export function Input({ label, error, secureTextEntry, ...props }: InputProps) {
   }
 
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       {label ? <Label>{label}</Label> : null}
       <View style={styles.container}>
         <TextInput
@@ -45,7 +52,7 @@ export function Input({ label, error, secureTextEntry, ...props }: InputProps) {
             <SecureIcon size={20} color={theme.zinc[400]} />
           </TouchableOpacity>
         )}
-        <ErrorMessage>{error}</ErrorMessage>
+        {!hideErrorMessage ? <ErrorMessage>{error}</ErrorMessage> : null}
       </View>
     </View>
   );
