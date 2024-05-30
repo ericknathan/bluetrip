@@ -1,11 +1,25 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import { Image, ScrollView, StyleSheet, View } from "react-native";
 
-import { Button, Header, Input, Label, SelectGroup, Text } from "@/components";
+import {
+  Button,
+  FormInput,
+  FormSelectGroup,
+  Header,
+  Label,
+  Text,
+} from "@/components";
 import { CountrySelector } from "@/components/CountrySelector";
 import type { ScreenProps } from "@/navigation";
+import { signUpSchema, type SignUpSchema } from "./validators";
 
 export function SignUpScreen({ navigation }: ScreenProps<"SignUp">) {
-  function handleSignUp() {
+  const { control, handleSubmit, setValue } = useForm<SignUpSchema>({
+    resolver: zodResolver(signUpSchema),
+  });
+
+  function onSignUp() {
     navigation.navigate("SignIn");
   }
 
@@ -22,60 +36,74 @@ export function SignUpScreen({ navigation }: ScreenProps<"SignUp">) {
         <Text weight="semibold" size={32}>
           Cadastre sua conta
         </Text>
-        <Input
+        <FormInput
+          name="name"
+          control={control}
           label="Nome completo"
           placeholder="Alan turing Oliveira"
           autoComplete="name"
           autoFocus
         />
-        <View>
+        <View style={{ marginBottom: 14 }}>
           <Label>Nacionalidade</Label>
-          <CountrySelector />
+          <CountrySelector
+            onSelect={(nationality) =>
+              setValue("nationality", nationality.name.toString())
+            }
+          />
         </View>
-        <Input
+        <FormInput
+          name="phone"
+          control={control}
           label="Telefone"
           placeholder="(••) ••••• ••••"
           autoComplete="tel"
         />
-        <Input
+        <FormInput
+          name="birthDate"
+          control={control}
           label="Data de nascimento"
           placeholder="__/__/____"
           autoComplete="birthdate-day"
         />
-        <View>
-          <Label>Gênero</Label>
-          <SelectGroup
-            options={[
-              { label: "Masculino", value: "m" },
-              { label: "Feminino", value: "f" },
-            ]}
-          />
-        </View>
-        <View>
-          <Label>Idioma</Label>
-          <SelectGroup
-            options={[
-              { label: "Português", value: "pt" },
-              { label: "Inglês", value: "en" },
-              { label: "Espanhol", value: "es" },
-            ]}
-          />
-        </View>
-        <Input
+        <FormSelectGroup
+          name="gender"
+          control={control}
+          label="Gênero"
+          options={[
+            { label: "Masculino", value: "m" },
+            { label: "Feminino", value: "f" },
+          ]}
+        />
+        <FormSelectGroup
+          name="language"
+          control={control}
+          label="Idioma"
+          options={[
+            { label: "Português", value: "pt" },
+            { label: "Inglês", value: "en" },
+            { label: "Espanhol", value: "es" },
+          ]}
+        />
+        <FormInput
+          name="email"
+          control={control}
           label="E-mail"
           placeholder="alan.turing@email.com"
           keyboardType="email-address"
           autoComplete="email"
         />
 
-        <Input
+        <FormInput
+          name="password"
+          control={control}
           label="Senha"
           placeholder="••••••••"
           secureTextEntry
           autoCapitalize="none"
           autoComplete="current-password"
         />
-        <Button onPress={handleSignUp} style={{ marginTop: 12 }}>
+        <Button onPress={handleSubmit(onSignUp)} style={{ marginTop: 12 }}>
           Criar conta
         </Button>
       </View>
@@ -87,6 +115,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    gap: 8,
   },
 });

@@ -1,3 +1,5 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import {
   Image,
   ScrollView,
@@ -6,12 +8,18 @@ import {
   View,
 } from "react-native";
 
-import { Button, Header, Input, Text } from "@/components";
+import { Button, FormInput, Header, Text } from "@/components";
 import type { ScreenProps } from "@/navigation";
 import { theme } from "@/styles";
+import { SignInSchema, signInSchema } from "./validators";
 
 export function SignInScreen({ navigation }: ScreenProps<"SignIn">) {
-  function handleSignIn() {
+  const { handleSubmit, control } = useForm<SignInSchema>({
+    resolver: zodResolver(signInSchema),
+  });
+
+  function onSignIn(data: SignInSchema) {
+    // TODO: send request to backend
     navigation.navigate("TouristSpots");
   }
 
@@ -28,14 +36,18 @@ export function SignInScreen({ navigation }: ScreenProps<"SignIn">) {
         <Text weight="semibold" size={32}>
           Entre em sua conta
         </Text>
-        <Input
+        <FormInput
+          name="email"
+          control={control}
           label="E-mail"
           placeholder="alan.turing@email.com"
           keyboardType="email-address"
           autoComplete="email"
           autoFocus
         />
-        <Input
+        <FormInput
+          name="password"
+          control={control}
           label="Senha"
           placeholder="••••••••"
           secureTextEntry
@@ -53,10 +65,11 @@ export function SignInScreen({ navigation }: ScreenProps<"SignIn">) {
             Esqueci a senha
           </Text>
         </TouchableOpacity>
-        <Button onPress={handleSignIn}>Fazer login</Button>
+        <Button onPress={handleSubmit(onSignIn)}>Fazer login</Button>
         <Button
           onPress={() => navigation.navigate("SignUp")}
           variant="secondary"
+          style={{ marginTop: 8 }}
         >
           Criar nova conta
         </Button>
@@ -69,6 +82,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    gap: 8,
   },
 });

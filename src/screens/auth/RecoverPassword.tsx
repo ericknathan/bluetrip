@@ -1,12 +1,22 @@
 import { Image, ScrollView, StyleSheet, View } from "react-native";
 
-import { Button, Header, Input, Text } from "@/components";
+import { Button, FormInput, Header, Text } from "@/components";
 import type { ScreenProps } from "@/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import {
+  recoverPasswordSchema,
+  type RecoverPasswordSchema,
+} from "./validators";
 
 export function RecoverPasswordScreen({
   navigation,
 }: ScreenProps<"RecoverPassword">) {
-  function handleRecoverPassword() {
+  const { control, handleSubmit } = useForm<RecoverPasswordSchema>({
+    resolver: zodResolver(recoverPasswordSchema),
+  });
+
+  function onRecoverPassword(data: RecoverPasswordSchema) {
     navigation.navigate("SignIn");
   }
 
@@ -23,14 +33,16 @@ export function RecoverPasswordScreen({
         <Text weight="semibold" size={32}>
           Recupere sua conta
         </Text>
-        <Input
+        <FormInput
+          name="email"
+          control={control}
           label="E-mail"
           placeholder="alan.turing@email.com"
           keyboardType="email-address"
           autoComplete="email"
           autoFocus
         />
-        <Button onPress={handleRecoverPassword}>
+        <Button onPress={handleSubmit(onRecoverPassword)}>
           Enviar e-mail de recuperação
         </Button>
       </View>

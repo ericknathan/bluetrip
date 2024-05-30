@@ -1,37 +1,59 @@
 import { theme } from "@/styles";
 import { useState } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { ErrorMessage } from "./ErrorMessage";
+import { Label } from "./Label";
 import { Text } from "./Text";
 
-interface SelectGroupProps {
+export interface SelectGroupProps {
   options: { label: string; value: string }[];
+  onChange?: (value: string) => void;
+  value?: string;
+  label?: string;
+  error?: string;
 }
 
-export function SelectGroup({ options }: SelectGroupProps) {
-  const [selectedOption, setSelectedOption] = useState<string>();
+export function SelectGroup({
+  options,
+  onChange,
+  value,
+  label,
+  error,
+}: SelectGroupProps) {
+  const [selectedOption, setSelectedOption] = useState<string>(value || "");
+
+  function handleChange(value: string) {
+    setSelectedOption(value);
+    onChange?.(value);
+  }
 
   return (
-    <View style={styles.container}>
-      {options.map((option) => (
-        <TouchableOpacity
-          style={[
-            styles.option,
-            selectedOption === option.value && styles.selectedOption,
-          ]}
-          key={option.value}
-          onPress={() => setSelectedOption(option.value)}
-        >
-          <Text
-            color={
-              selectedOption === option.value
-                ? theme.primary[500]
-                : theme.zinc[900]
-            }
+    <View>
+      {label ? <Label>{label}</Label> : null}
+
+      <View style={styles.container}>
+        {options.map((option) => (
+          <TouchableOpacity
+            style={[
+              styles.option,
+              selectedOption === option.value && styles.selectedOption,
+            ]}
+            key={option.value}
+            onPress={() => handleChange(option.value)}
           >
-            {option.label}
-          </Text>
-        </TouchableOpacity>
-      ))}
+            <Text
+              color={
+                selectedOption === option.value
+                  ? theme.primary[500]
+                  : theme.zinc[900]
+              }
+            >
+              {option.label}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+      <ErrorMessage>{error}</ErrorMessage>
     </View>
   );
 }

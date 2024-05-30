@@ -9,10 +9,10 @@ import {
 } from "react-native";
 
 import { fontFamily, theme } from "@/styles";
+import { ErrorMessage } from "./ErrorMessage";
 import { Label } from "./Label";
-import { Text } from "./Text";
 
-interface InputProps extends TextInputProps {
+export interface InputProps extends TextInputProps {
   label?: string;
   error?: string;
 }
@@ -45,7 +45,7 @@ export function Input({ label, error, secureTextEntry, ...props }: InputProps) {
             <SecureIcon size={20} color={theme.zinc[400]} />
           </TouchableOpacity>
         )}
-        {error && <Text style={styles.error}>{error}</Text>}
+        <ErrorMessage>{error}</ErrorMessage>
       </View>
     </View>
   );
@@ -79,10 +79,5 @@ const styles = StyleSheet.create({
 
     width: 48,
     height: 48,
-  },
-  error: {
-    color: theme.red[500],
-    marginTop: 2,
-    fontSize: 12,
   },
 });
