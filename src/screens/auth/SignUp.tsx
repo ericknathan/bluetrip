@@ -25,7 +25,7 @@ export function SignUpScreen({ navigation }: ScreenProps<"SignUp">) {
   }
 
   return (
-    <ScrollView style={{ flex: 1 }}>
+    <ScrollView style={{ flex: 1 }} keyboardShouldPersistTaps="always">
       <Header showBackButton />
 
       <View style={styles.container}>

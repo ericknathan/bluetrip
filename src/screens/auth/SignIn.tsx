@@ -24,7 +24,7 @@ export function SignInScreen({ navigation }: ScreenProps<"SignIn">) {
   }
 
   return (
-    <ScrollView style={{ flex: 1 }}>
+    <ScrollView style={{ flex: 1 }} keyboardShouldPersistTaps="always">
       <Header showBackButton />
 
       <View style={styles.container}>
@@ -44,6 +44,7 @@ export function SignInScreen({ navigation }: ScreenProps<"SignIn">) {
           keyboardType="email-address"
           autoComplete="email"
           autoFocus
+          autoCapitalize="none"
         />
         <FormInput
           name="password"
