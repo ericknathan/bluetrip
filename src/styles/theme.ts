@@ -26,6 +26,9 @@ export const theme = {
     500: "#EF4444",
     600: "#dc2626",
   },
+  yellow: {
+    500: "#f59e0b",
+  },
   border: "#FFFFFF1A",
 };
 
