@@ -20,7 +20,7 @@ export function SignInScreen({ navigation }: ScreenProps<"SignIn">) {
 
   function onSignIn(data: SignInSchema) {
     // TODO: send request to backend
-    navigation.navigate("TouristSpots");
+    navigation.navigate("App");
   }
 
   return (

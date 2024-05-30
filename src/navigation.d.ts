@@ -1,6 +1,7 @@
 import { NavigationProp, RouteProp } from "@react-navigation/native";
 
 export type AppNavigation = {
+  App: undefined;
   Welcome: undefined;
   SignIn: undefined;
   SignUp: undefined;
@@ -21,7 +22,7 @@ declare global {
   }
 }
 
-export type ScreenProps<ScreenName extends keyof AppNavigation = undefined> = {
+export type ScreenProps<ScreenName extends keyof AppNavigation = "undefined"> = {
   navigation: NavigationProp<AppNavigation, ScreenName>;
   route: RouteProp<AppNavigation, ScreenName>;
 };

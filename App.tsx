@@ -7,7 +7,6 @@ import {
   Poppins_600SemiBold,
   useFonts,
 } from "@expo-google-fonts/poppins";
-import { NavigationContainer } from "@react-navigation/native";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 
@@ -36,26 +35,12 @@ export default function App() {
 
   return (
     <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
-      <NavigationContainer
-        theme={{
-          colors: {
-            background: theme.zinc[50],
-            border: theme.zinc[200],
-            card: theme.white,
-            primary: theme.primary[500],
-            text: theme.zinc[900],
-            notification: theme.primary[500],
-          },
-          dark: false,
-        }}
-      >
-        <Router />
-        <StatusBar
-          style="auto"
-          translucent={false}
-          backgroundColor={theme.zinc[50]}
-        />
-      </NavigationContainer>
+      <Router />
+      <StatusBar
+        style="auto"
+        translucent={false}
+        backgroundColor={theme.zinc[50]}
+      />
     </View>
   );
 }
