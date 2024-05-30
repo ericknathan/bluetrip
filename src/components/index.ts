@@ -9,3 +9,4 @@ export * from "./Logo";
 export * from "./SearchBar";
 export * from "./SelectGroup";
 export * from "./Text";
+export * from "./TouristicSpotCard";
