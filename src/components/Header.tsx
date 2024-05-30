@@ -26,7 +26,7 @@ export function Header({ title, showBackButton = false }: HeaderProps) {
     >
       <Logo height={46} />
       {title && (
-        <Text weight="semibold" size={18}>
+        <Text weight="semibold" size={20}>
           {title}
         </Text>
       )}
