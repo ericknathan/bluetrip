@@ -13,6 +13,7 @@ import {
 import { CountrySelector } from "@/components/CountrySelector";
 import type { ScreenProps } from "@/navigation";
 import { signUpSchema, type SignUpSchema } from "./validators";
+import { DatePicker } from "@/components/DatePicker";
 
 export function SignUpScreen({ navigation }: ScreenProps<"SignUp">) {
   const { control, handleSubmit, setValue } = useForm<SignUpSchema>({
@@ -59,12 +60,12 @@ export function SignUpScreen({ navigation }: ScreenProps<"SignUp">) {
           placeholder="(••) ••••• ••••"
           autoComplete="tel"
         />
-        <FormInput
+        <DatePicker
           name="birthDate"
           control={control}
           label="Data de nascimento"
           placeholder="__/__/____"
-          autoComplete="birthdate-day"
+          onChange={(date) => setValue("birthDate", date)}
         />
         <FormSelectGroup
           name="gender"

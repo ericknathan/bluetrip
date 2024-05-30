@@ -3,7 +3,7 @@ import { Controller, type Control } from "react-hook-form";
 import { Input, type InputProps } from "./Input";
 import { SelectGroup, type SelectGroupProps } from "./SelectGroup";
 
-interface FormInputProps {
+export interface FormInputProps {
   name: string;
   control: Control<any>;
 }
