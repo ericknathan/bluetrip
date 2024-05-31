@@ -2,6 +2,7 @@ import DateTimePicker, {
   DateTimePickerAndroid,
   type DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";
+import dayjs from "dayjs";
 import { useState } from "react";
 import { Platform, TouchableOpacity, View } from "react-native";
 import { FormInput, type FormInputProps } from "./Form";
@@ -43,7 +44,11 @@ export function DatePicker({
   return (
     <View>
       <TouchableOpacity activeOpacity={1} onPress={showDatePicker}>
-        <FormInput readOnly value={date?.toLocaleDateString()} {...props} />
+        <FormInput
+          readOnly
+          value={dayjs(date).format("DD/MM/YYYY")}
+          {...props}
+        />
       </TouchableOpacity>
       {showComponent ? (
         <DateTimePicker
