@@ -1,6 +1,7 @@
 import { StyleSheet, View } from "react-native";
 
-import { Header, Text } from "@/components";
+import { Header } from "@/components/app";
+import { Text } from "@/components/ui";
 
 export function TouristSpotScreen() {
   return (

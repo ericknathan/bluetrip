@@ -1,9 +1,10 @@
-import { Image, ScrollView, StyleSheet, View } from "react-native";
-
-import { Button, FormInput, Header, Text } from "@/components";
-import type { ScreenProps } from "@/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { Image, ScrollView, StyleSheet, View } from "react-native";
+
+import { Header } from "@/components/app";
+import { Button, FormInput, Text } from "@/components/ui";
+import type { ScreenProps } from "@/navigation";
 import {
   recoverPasswordSchema,
   type RecoverPasswordSchema,

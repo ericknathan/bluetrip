@@ -1,8 +1,10 @@
 import { FlatList, ScrollView, StyleSheet, View } from "react-native";
 
-import { Header, SearchBar, Text, TouristicSpotCard } from "@/components";
-import { touristicSpotMock } from "@/mocks/touristic-spot.mock";
+import { Header, SearchBar, TouristicSpotCard } from "@/components/app";
+import { Text } from "@/components/ui";
 import type { TouristicSpotModel } from "@/models";
+
+import { touristicSpotMock } from "@/mocks/touristic-spot.mock";
 
 function TouristicSpotSection({
   title,

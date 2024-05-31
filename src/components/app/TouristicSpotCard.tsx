@@ -1,9 +1,9 @@
-import type { TouristicSpotModel } from "@/models";
 import { Image, StyleSheet, View } from "react-native";
-import { AverageStars } from "./AverageStars";
-import { Badge } from "./Badge";
-import { Text } from "./Text";
+
+import { Badge, Text } from "@/components/ui";
+import type { TouristicSpotModel } from "@/models";
 import { theme } from "@/styles";
+import { AverageStars } from "./AverageStars";
 
 interface TouristicSpotCardProps {
   data: TouristicSpotModel;
@@ -20,10 +20,17 @@ export function TouristicSpotCard({ data }: TouristicSpotCardProps) {
       />
       <View style={styles.details}>
         <View style={[styles.row, { flex: 1 }]}>
-          <Text weight="semibold" size={16} style={{ flex: 1 }} color={theme.zinc[700]}>
+          <Text
+            weight="semibold"
+            size={16}
+            style={{ flex: 1 }}
+            color={theme.zinc[700]}
+          >
             {data.name}
           </Text>
-          <Text size={14} color={theme.zinc[500]}>R$ 100,00 / Noite</Text>
+          <Text size={14} color={theme.zinc[500]}>
+            R$ 100,00 / Noite
+          </Text>
         </View>
         <View style={styles.row}>
           <AverageStars rate={data.averageRate} />
@@ -47,7 +54,7 @@ const styles = StyleSheet.create({
   },
   details: {
     justifyContent: "space-between",
-    flex: 1
+    flex: 1,
   },
   row: {
     flexDirection: "row",

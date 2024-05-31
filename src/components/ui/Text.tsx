@@ -1,5 +1,5 @@
 import { Text as NativeText, TextProps as NativeTextProps } from "react-native";
-import { fontFamily, theme } from "../styles";
+import { fontFamily, theme } from "@/styles";
 
 interface TextProps extends NativeTextProps {
   weight?: keyof typeof fontFamily;

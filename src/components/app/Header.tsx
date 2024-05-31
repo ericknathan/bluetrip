@@ -1,10 +1,10 @@
-import { theme } from "@/styles";
 import { useNavigation } from "@react-navigation/native";
 import { CaretLeft } from "phosphor-react-native";
-import { StatusBar, StyleSheet, View } from "react-native";
-import { Button } from "./Button";
+import { StyleSheet, View } from "react-native";
+
+import { Text, Button } from "@/components/ui";
+import { theme } from "@/styles";
 import { Logo } from "./Logo";
-import { Text } from "./Text";
 
 type HeaderProps = {
   title?: string;

@@ -1,6 +1,7 @@
 import { Image, StyleSheet, View } from "react-native";
 
-import { Button, Header, Text } from "@/components";
+import { Header } from "@/components/app";
+import { Button, Text } from "@/components/ui";
 import type { ScreenProps } from "@/navigation";
 import { theme } from "@/styles";
 

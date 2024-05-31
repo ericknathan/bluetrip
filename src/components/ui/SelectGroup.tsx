@@ -1,6 +1,7 @@
-import { theme } from "@/styles";
 import { useState } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
+
+import { theme } from "@/styles";
 import { ErrorMessage } from "./ErrorMessage";
 import { Label } from "./Label";
 import { Text } from "./Text";

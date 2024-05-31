@@ -8,7 +8,8 @@ import {
   View,
 } from "react-native";
 
-import { Button, FormInput, Header, Text } from "@/components";
+import { Header } from "@/components/app";
+import { Button, FormInput, Text } from "@/components/ui";
 import type { ScreenProps } from "@/navigation";
 import { theme } from "@/styles";
 import { SignInSchema, signInSchema } from "./validators";

@@ -2,16 +2,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Image, ScrollView, StyleSheet, View } from "react-native";
 
+import { Header } from "@/components/app";
 import {
   Button,
+  CountrySelector,
+  DatePicker,
   FormInput,
   FormSelectGroup,
-  Header,
   Label,
   Text,
-} from "@/components";
-import { CountrySelector } from "@/components/CountrySelector";
-import { DatePicker } from "@/components/DatePicker";
+} from "@/components/ui";
 import type { ScreenProps } from "@/navigation";
 import { signUpSchema, type SignUpSchema } from "./validators";
 

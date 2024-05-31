@@ -1,9 +1,9 @@
-import { theme } from "@/styles";
 import { MagnifyingGlass } from "phosphor-react-native";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { Button } from "./Button";
-import { Input } from "./Input";
+
+import { Button, Input } from "@/components/ui";
+import { theme } from "@/styles";
 
 interface SearchBarProps {
   placeholder: string;
