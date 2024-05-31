@@ -1,25 +1,36 @@
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 import { Header } from "@/components/app";
-import { Text } from "@/components/ui";
+import { UserForm } from "@/components/app/UserForm";
 
 export function AccountScreen() {
   return (
-    <View style={{ flex: 1 }}>
+    <ScrollView style={{ flex: 1 }}>
       <Header title="Minha conta" />
 
       <View style={styles.container}>
-        <Text>Account</Text>
+        <UserForm
+          buttonLabel="Atualizar dados"
+          onSubmit={console.log}
+          showPassword={false}
+          defaultValues={{
+            name: "Erick Nathan",
+            email: "erick.capito@hotmail.com",
+            birthDate: new Date("2005-08-14"),
+            gender: "m",
+            language: "pt",
+            nationality: "Brazil",
+            phone: "(11) 96119-7019",
+          }}
+        />
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
     paddingHorizontal: 20,
   },
 });
