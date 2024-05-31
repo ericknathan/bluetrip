@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import MaskInput, { MaskInputProps } from "react-native-mask-input";
 
 import { fontFamily, theme } from "@/styles";
 import { ErrorMessage } from "./ErrorMessage";
@@ -16,6 +17,7 @@ export interface InputProps extends TextInputProps {
   label?: string;
   error?: string;
   hideErrorMessage?: boolean;
+  mask?: MaskInputProps["mask"];
 }
 
 export function Input({
@@ -27,6 +29,7 @@ export function Input({
 }: InputProps) {
   const [isSecure, setIsSecure] = useState(secureTextEntry);
   const SecureIcon = isSecure ? EyeClosed : Eye;
+  const InputComp = props.mask ? MaskInput : TextInput;
 
   function toggleSecure() {
     setIsSecure(!isSecure);
@@ -36,7 +39,7 @@ export function Input({
     <View style={{ flex: 1 }}>
       {label ? <Label>{label}</Label> : null}
       <View style={styles.container}>
-        <TextInput
+        <InputComp
           style={styles.input}
           placeholderTextColor={theme.zinc[400]}
           secureTextEntry={isSecure}

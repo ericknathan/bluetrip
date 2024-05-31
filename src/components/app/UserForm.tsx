@@ -12,6 +12,8 @@ import {
 } from "@/components/ui";
 import { userDataSchema, type UserDataSchema } from "@/helpers/validators";
 
+const PHONE_MASK = ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+
 interface UserFormProps {
   onSubmit: (data: UserDataSchema) => void;
   buttonLabel: string;
@@ -56,6 +58,7 @@ export function UserForm({
         label="Telefone"
         placeholder="(••) ••••• ••••"
         autoComplete="tel"
+        mask={PHONE_MASK}
       />
       <DatePicker
         name="birthDate"
