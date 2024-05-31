@@ -12,7 +12,7 @@ import { Header } from "@/components/app";
 import { Button, FormInput, Text } from "@/components/ui";
 import type { ScreenProps } from "@/navigation";
 import { theme } from "@/styles";
-import { SignInSchema, signInSchema } from "./validators";
+import { signInSchema, type SignInSchema } from "@/helpers/validators";
 
 export function SignInScreen({ route, navigation }: ScreenProps<"SignIn">) {
   const { handleSubmit, control, getValues } = useForm<SignInSchema>({

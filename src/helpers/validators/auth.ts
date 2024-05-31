@@ -19,7 +19,7 @@ export const signInSchema = z.object({
 });
 export type SignInSchema = z.infer<typeof signInSchema>;
 
-export const signUpSchema = z.object({
+export const userDataSchema = z.object({
   name: z
     .string({ required_error: "É necessário informar o nome" })
     .min(3, "O nome deve ter no mínimo 3 caracteres")
@@ -62,7 +62,7 @@ export const signUpSchema = z.object({
       return /[0-9]/.test(password);
     }, "A senha deve conter ao menos um número"),
 });
-export type SignUpSchema = z.infer<typeof signUpSchema>;
+export type UserDataSchema = z.infer<typeof userDataSchema>;
 
 export const recoverPasswordSchema = z.object({
   email: z

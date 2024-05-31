@@ -5,10 +5,7 @@ import { Image, ScrollView, StyleSheet, View } from "react-native";
 import { Header } from "@/components/app";
 import { Button, FormInput, Text } from "@/components/ui";
 import type { ScreenProps } from "@/navigation";
-import {
-  recoverPasswordSchema,
-  type RecoverPasswordSchema,
-} from "./validators";
+import { recoverPasswordSchema, type RecoverPasswordSchema } from "@/helpers/validators";
 
 export function RecoverPasswordScreen({
   route,
