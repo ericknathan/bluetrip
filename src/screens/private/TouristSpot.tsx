@@ -1,7 +1,8 @@
-import { Image, ScrollView, StyleSheet, View } from "react-native";
+import { FlatList, Image, ScrollView, StyleSheet, View } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 
 import { AverageStars, Header } from "@/components/app";
+import { EventCard } from "@/components/app/EventCard";
 import { Badge, Button, Text } from "@/components/ui";
 import type { TouristicSpotModel } from "@/models";
 import type { ScreenProps } from "@/navigation";
@@ -31,7 +32,7 @@ export function TouristSpotScreen({
                 {data.name}
               </Text>
               <Text size={18} color={theme.zinc[500]}>
-                R$ 100,00 / Noite
+                R$ 100,00 / Sessão
               </Text>
             </View>
             <View style={styles.row}>
@@ -40,13 +41,13 @@ export function TouristSpotScreen({
             </View>
           </View>
           <View style={styles.section}>
-            <Text size={20} color={theme.zinc[700]} weight="semibold">
+            <Text size={18} color={theme.zinc[700]} weight="semibold">
               Descrição
             </Text>
             <Text color={theme.zinc[500]}>{data.description}</Text>
           </View>
           <View style={styles.section}>
-            <Text size={20} color={theme.zinc[700]} weight="semibold">
+            <Text size={18} color={theme.zinc[700]} weight="semibold">
               Localização
             </Text>
             <Text color={theme.zinc[500]}>
@@ -56,6 +57,10 @@ export function TouristSpotScreen({
             </Text>
             <View style={styles.map}>
               <MapView
+                pitchEnabled={false}
+                rotateEnabled={false}
+                zoomEnabled={false}
+                scrollEnabled={false}
                 style={{ flex: 1 }}
                 initialRegion={{
                   latitude: -23.59350410594463,
@@ -80,12 +85,26 @@ export function TouristSpotScreen({
               </MapView>
             </View>
           </View>
-          <View style={styles.section}>
-            <Text size={20} color={theme.zinc[700]} weight="semibold">
-              Próximos eventos
-            </Text>
-            <Text>TODO: Colocar card dos eventos aqui</Text>
-          </View>
+        </View>
+        <View style={styles.section}>
+          <Text
+            size={18}
+            color={theme.zinc[700]}
+            weight="semibold"
+            style={{ paddingHorizontal: 20 }}
+          >
+            Próximos eventos
+          </Text>
+          <FlatList
+            data={data.events}
+            contentContainerStyle={{ paddingHorizontal: 20 }}
+            ItemSeparatorComponent={() => <View style={{ width: 16 }} />}
+            showsHorizontalScrollIndicator={false}
+            horizontal
+            renderItem={({ item }) => (
+              <EventCard data={{ ...item, touristicSpot: data }} />
+            )}
+          />
         </View>
       </ScrollView>
       <View style={styles.buttonContainer}>
