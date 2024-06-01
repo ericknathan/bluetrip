@@ -1,5 +1,10 @@
 import { useCallback } from "react";
-import { View } from "react-native";
+import { LogBox, View } from "react-native";
+LogBox.ignoreAllLogs();
+
+import dayjs from "dayjs";
+import "dayjs/locale/pt-br";
+dayjs.locale("pt-br");
 
 import {
   Poppins_400Regular,
@@ -10,11 +15,8 @@ import {
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 
+import { Router } from "@/screens";
 import { theme } from "@/styles";
-import { Router } from "./src/screens";
-
-import { LogBox } from "react-native";
-LogBox.ignoreAllLogs();
 
 export default function App() {
   let [fontsLoaded, fontError] = useFonts({
