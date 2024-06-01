@@ -1,10 +1,7 @@
-import { useCallback } from "react";
-import { LogBox, View } from "react-native";
-LogBox.ignoreAllLogs();
+import "setup";
 
-import dayjs from "dayjs";
-import "dayjs/locale/pt-br";
-dayjs.locale("pt-br");
+import { useCallback } from "react";
+import { View } from "react-native";
 
 import {
   Poppins_400Regular,
