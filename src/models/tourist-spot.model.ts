@@ -10,6 +10,7 @@ export type TouristicSpotModel = {
   imageUrl: string;
   category: string;
   address: AddressModel;
+  events?: Omit<EventModel, "touristicSpot">[];
 };
 
 export type EventModel = {
@@ -20,4 +21,5 @@ export type EventModel = {
   imageUrl: string;
   startDate: string;
   endDate: string;
+  touristicSpot?: Omit<TouristicSpotModel, "events">;
 };

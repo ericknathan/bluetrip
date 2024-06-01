@@ -79,6 +79,9 @@ devDependencies:
   '@babel/core':
     specifier: ^7.20.0
     version: 7.24.6
+  '@faker-js/faker':
+    specifier: ^8.4.1
+    version: 8.4.1
   '@types/react':
     specifier: ~18.2.45
     version: 18.2.79
@@ -1932,6 +1935,11 @@ packages:
       find-up: 5.0.0
       js-yaml: 4.1.0
     dev: false
+
+  /@faker-js/faker@8.4.1:
+    resolution: {integrity: sha512-XQ3cU+Q8Uqmrbf2e0cIC/QN43sTBSC8KF12u29Mb47tWrt2hAgBXSgpZMj4Ao8Uk0iJcU99QsOCaIL8934obCg==}
+    engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0, npm: '>=6.14.13'}
+    dev: true
 
   /@graphql-typed-document-node/core@3.2.0(graphql@15.8.0):
     resolution: {integrity: sha512-mB9oAsNCm9aM3/SOv4YtBMqZbYj10R7dkq8byBqxGY/ncFwhf2oQzMV+LCRlWoDSEBJ3COiR1yeDvMtsoOsuFQ==}
