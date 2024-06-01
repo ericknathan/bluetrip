@@ -1,7 +1,7 @@
 import { Text as NativeText, TextProps as NativeTextProps } from "react-native";
 import { fontFamily, theme } from "@/styles";
 
-interface TextProps extends NativeTextProps {
+export interface TextProps extends NativeTextProps {
   weight?: keyof typeof fontFamily;
   size?: number;
   align?: "left" | "center" | "right";

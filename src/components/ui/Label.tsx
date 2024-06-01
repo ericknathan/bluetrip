@@ -1,5 +1,4 @@
-import type { TextProps } from "react-native";
-import { Text } from "./Text";
+import { Text, TextProps } from "./Text";
 
 export function Label({ children, style, ...props }: TextProps) {
   return (

@@ -89,10 +89,7 @@ export function TouristSpotScreen({
         </View>
       </ScrollView>
       <View style={styles.buttonContainer}>
-        <Button
-          style={styles.button}
-          onPress={() => navigation.navigate("Reservation")}
-        >
+        <Button onPress={() => navigation.navigate("Reservation")}>
           Escolher data da reserva
         </Button>
       </View>
@@ -130,13 +127,10 @@ const styles = StyleSheet.create({
     borderColor: theme.zinc[200],
   },
   buttonContainer: {
-    backgroundColor: theme.zinc[100],
+    backgroundColor: theme.white,
     width: "100%",
-    paddingHorizontal: 20,
+    padding: 20,
     borderTopWidth: 1,
     borderColor: theme.zinc[200],
-  },
-  button: {
-    marginVertical: 12,
   },
 });

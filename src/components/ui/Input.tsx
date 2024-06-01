@@ -36,7 +36,7 @@ export function Input({
   }
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flexGrow: 1 }}>
       {label ? <Label>{label}</Label> : null}
       <View style={styles.container}>
         <InputComp

@@ -1,25 +1,111 @@
-import { StyleSheet, View } from "react-native";
+import { StatusBar } from "expo-status-bar";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 import { Header } from "@/components/app";
-import { Text } from "@/components/ui";
+import {
+  Button,
+  Calendar,
+  FormInput,
+  FormSelectGroup,
+  Label,
+  Text,
+} from "@/components/ui";
+import { ErrorMessage } from "@/components/ui/ErrorMessage";
+import {
+  CreateReservationSchema,
+  createReservationSchema,
+} from "@/helpers/validators/reservation";
+import type { ScreenProps } from "@/navigation";
+import { theme } from "@/styles";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 
-export function ReservationScreen() {
+export function ReservationScreen({ navigation }: ScreenProps<"Reservation">) {
+  const {
+    control,
+    setValue,
+    watch,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CreateReservationSchema>({
+    resolver: zodResolver(createReservationSchema),
+  });
+
+  function onCreateReservation(data: CreateReservationSchema) {
+    console.log(data)
+    navigation.navigate("ReservationSuccess");
+  }
+
   return (
-    <View style={{ flex: 1 }}>
-      <Header showBackButton />
+    <ScrollView style={{ flex: 1 }}>
+      <View style={styles.headerContainer}>
+        <Header showBackButton background="primary" />
+        <Text
+          weight="medium"
+          color={theme.white}
+          size={32}
+          style={[{ maxWidth: 300 }, styles.headerContent]}
+        >
+          Informações da reserva
+        </Text>
+      </View>
 
       <View style={styles.container}>
-        <Text>Reservation</Text>
+        <FormInput
+          control={control}
+          name="quantity"
+          label="Quantidade de pessoas"
+          keyboardType="numeric"
+          maxLength={2}
+        />
+        <FormSelectGroup
+          control={control}
+          name="paymentMethod"
+          options={[
+            { label: "Cartão", value: "C" },
+            { label: "Dinheiro", value: "M" },
+            { label: "PIX", value: "P" },
+          ]}
+          label="Forma de pagamento"
+        />
+        <View style={styles.calendar}>
+          <Label>Data da reserva</Label>
+          <Calendar
+            onDayPress={(day) => {
+              setValue("date", day.dateString);
+            }}
+            markedDates={{
+              [watch("date")]: {
+                selected: true,
+                disableTouchEvent: true,
+              },
+            }}
+          />
+          <ErrorMessage>{errors.date?.message}</ErrorMessage>
+        </View>
+
+        <Button onPress={handleSubmit(onCreateReservation)}>Confirmar</Button>
       </View>
-    </View>
+      <StatusBar backgroundColor={theme.primary[500]} translucent={false} />
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  headerContainer: {
+    backgroundColor: theme.primary[500],
+    paddingBottom: 20,
+    gap: 24,
+  },
+  headerContent: {
+    paddingHorizontal: 20,
+  },
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingHorizontal: 20,
+    padding: 20,
+    gap: 4,
+  },
+  calendar: {
+    marginBottom: 20,
   },
 });
