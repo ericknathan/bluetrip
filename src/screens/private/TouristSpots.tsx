@@ -36,7 +36,7 @@ function TouristicSpotSection({
 
 export function TouristSpotsScreen() {
   return (
-    <ScrollView style={{ flex: 1 }}>
+    <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
       <Header title="Pontos turísticos" />
 
       <SearchBar placeholder="Busque pelo nome do ponto turístico" />

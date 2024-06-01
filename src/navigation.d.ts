@@ -10,7 +10,7 @@ export type AppNavigation = {
   Events: undefined;
   Commerces: undefined;
   Account: undefined;
-  TouristSpot: undefined;
+  TouristSpot: TouristicSpotModel;
   Event: undefined;
   Commerce: undefined;
   Reservation: undefined;

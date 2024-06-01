@@ -1,8 +1,9 @@
-import { Image, StyleSheet, View } from "react-native";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
 import { Badge, Text } from "@/components/ui";
 import type { TouristicSpotModel } from "@/models";
 import { theme } from "@/styles";
+import { useNavigation } from "@react-navigation/native";
 import { AverageStars } from "./AverageStars";
 
 interface TouristicSpotCardProps {
@@ -10,8 +11,14 @@ interface TouristicSpotCardProps {
 }
 
 export function TouristicSpotCard({ data }: TouristicSpotCardProps) {
+  const navigation = useNavigation();
+
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      activeOpacity={0.7}
+      onPress={() => navigation.navigate("TouristSpot", data)}
+    >
       <Image
         style={styles.image}
         source={{
@@ -37,7 +44,7 @@ export function TouristicSpotCard({ data }: TouristicSpotCardProps) {
           <Badge>{data.category}</Badge>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
