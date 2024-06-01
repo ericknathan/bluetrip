@@ -29,7 +29,7 @@ export function EventCard({ data }: EventCardProps) {
         </Text>
       </View>
       <View style={styles.content}>
-        <Badge style={styles.badge}>{data.touristicSpot?.name}</Badge>
+        <Badge style={styles.badge}>{data.touristicSpot?.name.slice(0, 23)}</Badge>
         <Text size={18} weight="semibold">
           {data.name}
         </Text>
