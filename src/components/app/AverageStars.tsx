@@ -13,15 +13,14 @@ export function AverageStars({ rate }: AverageStarsProps) {
     >
       <View style={{ flexDirection: "row" }}>
         {Array.from({ length: 5 }, (_, index) => {
-          if (rate >= index + 1) {
-            return <Star key={index} />;
+          const star = index + 1;
+          if (rate >= star) {
+            return <Star key={star} />;
           }
-
-          if (rate >= index + 0.5) {
-            return <StarHalf key={index} />;
+          if (rate + 1 > star) {
+            return <StarHalf key={star} />;
           }
-
-          return <Star key={index} />;
+          return <Star key={star} weight="regular" />;
         })}
       </View>
     </IconContext.Provider>
