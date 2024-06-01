@@ -10,6 +10,7 @@ import {
   CommerceScreen,
   EventScreen,
   ReservationScreen,
+  ReservationSuccessScreen,
   TouristSpotScreen,
 } from "./private";
 import { TabRoutes } from "./tab.routes";
@@ -22,6 +23,7 @@ export function StackRoutes() {
       screenOptions={{
         headerShown: false,
       }}
+      initialRouteName="App"
     >
       <Stack.Screen name="Welcome" component={WelcomeScreen} />
       <Stack.Screen name="SignIn" component={SignInScreen} />
@@ -33,6 +35,10 @@ export function StackRoutes() {
       <Stack.Screen name="Event" component={EventScreen} />
       <Stack.Screen name="Commerce" component={CommerceScreen} />
       <Stack.Screen name="Reservation" component={ReservationScreen} />
+      <Stack.Screen
+        name="ReservationSuccess"
+        component={ReservationSuccessScreen}
+      />
     </Stack.Navigator>
   );
 }

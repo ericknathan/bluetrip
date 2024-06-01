@@ -4,5 +4,6 @@ export * from "./Commerces";
 export * from "./Event";
 export * from "./Events";
 export * from "./Reservation";
+export * from "./ReservationSuccess";
 export * from "./TouristSpot";
 export * from "./TouristSpots";

@@ -14,6 +14,7 @@ export type AppNavigation = {
   Event: undefined;
   Commerce: undefined;
   Reservation: undefined;
+  ReservationSuccess: undefined;
 };
 
 declare global {
@@ -23,6 +24,6 @@ declare global {
 }
 
 export type ScreenProps<ScreenName extends keyof AppNavigation = "undefined"> = {
-  navigation: NavigationProp<AppNavigation, ScreenName>;
-  route: RouteProp<AppNavigation, ScreenName>;
-};
+    navigation: NavigationProp<AppNavigation, ScreenName>;
+    route: RouteProp<AppNavigation, ScreenName>;
+  };
