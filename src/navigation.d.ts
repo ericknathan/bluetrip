@@ -1,4 +1,5 @@
 import { NavigationProp, RouteProp } from "@react-navigation/native";
+import type { EventModel } from "./models";
 
 export type AppNavigation = {
   App: undefined;
@@ -11,7 +12,7 @@ export type AppNavigation = {
   Commerces: undefined;
   Account: undefined;
   TouristSpot: TouristicSpotModel;
-  Event: undefined;
+  Event: EventModel;
   Commerce: undefined;
   Reservation: undefined;
   ReservationSuccess: undefined;
@@ -23,7 +24,8 @@ declare global {
   }
 }
 
-export type ScreenProps<ScreenName extends keyof AppNavigation = "undefined"> = {
+export type ScreenProps<ScreenName extends keyof AppNavigation = "undefined"> =
+  {
     navigation: NavigationProp<AppNavigation, ScreenName>;
     route: RouteProp<AppNavigation, ScreenName>;
   };

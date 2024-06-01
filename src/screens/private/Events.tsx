@@ -1,25 +1,35 @@
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 
-import { Header } from "@/components/app";
-import { Text } from "@/components/ui";
+import { DataSection, EventCard, Header, SearchBar } from "@/components/app";
+import { generateEvent } from "@/mocks";
 
 export function EventsScreen() {
   return (
-    <View style={{ flex: 1 }}>
+    <ScrollView style={{ flex: 1 }}>
       <Header title="Eventos" />
 
+      <SearchBar placeholder="Busque pelo nome do evento" />
+
       <View style={styles.container}>
-        <Text>Events</Text>
+        <DataSection
+          title="Próximos eventos"
+          data={Array.from({ length: 10 }, generateEvent)}
+          renderItem={({ item }) => <EventCard data={item} />}
+        />
+        <DataSection
+          title="Sugestões para você"
+          data={Array.from({ length: 10 }, generateEvent)}
+          renderItem={({ item }) => <EventCard data={item} />}
+        />
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingHorizontal: 20,
+    gap: 16,
+    paddingVertical: 24,
   },
 });
