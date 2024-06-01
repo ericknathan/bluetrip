@@ -1,15 +1,15 @@
 import { theme } from "@/styles";
 import type { ReactNode } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, type ViewProps } from "react-native";
 import { Text } from "./Text";
 
-interface BadgeProps {
+interface BadgeProps extends ViewProps {
   children: ReactNode;
 }
 
-export function Badge({ children }: BadgeProps) {
+export function Badge({ children, style, ...props }: BadgeProps) {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]} {...props}>
       <Text size={12} weight="medium" color={theme.primary[500]}>
         {children}
       </Text>
