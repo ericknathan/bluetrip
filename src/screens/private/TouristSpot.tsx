@@ -86,26 +86,28 @@ export function TouristSpotScreen({
             </View>
           </View>
         </View>
-        <View style={styles.section}>
-          <Text
-            size={18}
-            color={theme.zinc[700]}
-            weight="semibold"
-            style={{ paddingHorizontal: 20 }}
-          >
-            Próximos eventos
-          </Text>
-          <FlatList
-            data={data.events}
-            contentContainerStyle={{ paddingHorizontal: 20 }}
-            ItemSeparatorComponent={() => <View style={{ width: 16 }} />}
-            showsHorizontalScrollIndicator={false}
-            horizontal
-            renderItem={({ item }) => (
-              <EventCard data={{ ...item, touristicSpot: data }} />
-            )}
-          />
-        </View>
+        {data.events?.length ? (
+          <View style={styles.section}>
+            <Text
+              size={18}
+              color={theme.zinc[700]}
+              weight="semibold"
+              style={{ paddingHorizontal: 20 }}
+            >
+              Próximos eventos
+            </Text>
+            <FlatList
+              data={data.events}
+              contentContainerStyle={{ paddingHorizontal: 20 }}
+              ItemSeparatorComponent={() => <View style={{ width: 16 }} />}
+              showsHorizontalScrollIndicator={false}
+              horizontal
+              renderItem={({ item }) => (
+                <EventCard data={{ ...item, touristicSpot: data }} />
+              )}
+            />
+          </View>
+        ) : null}
       </ScrollView>
       <View style={styles.buttonContainer}>
         <Button onPress={() => navigation.navigate("Reservation")}>
