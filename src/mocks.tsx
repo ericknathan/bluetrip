@@ -22,7 +22,7 @@ export function generateTouristicSpot(withEvents = true): TouristicSpotModel {
     id: faker.number.int(),
     name: faker.company.name(),
     description: faker.lorem.paragraphs(),
-    averageRate: faker.number.float({ min: 0, max: 5 }),
+    averageRate: faker.number.float({ min: 3, max: 5 }),
     price: faker.number.float({ min: 0, max: 500 }),
     imageUrl: faker.image.urlLoremFlickr({ category: "ocean" }),
     address: {
