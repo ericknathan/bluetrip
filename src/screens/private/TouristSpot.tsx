@@ -4,6 +4,7 @@ import MapView, { Marker } from "react-native-maps";
 import { AverageStars, Header } from "@/components/app";
 import { EventCard } from "@/components/app/EventCard";
 import { Badge, Button, Text } from "@/components/ui";
+import { parseCurrency } from "@/helpers/parsers";
 import type { TouristicSpotModel } from "@/models";
 import type { ScreenProps } from "@/navigation";
 import { theme } from "@/styles";
@@ -32,7 +33,7 @@ export function TouristSpotScreen({
                 {data.name}
               </Text>
               <Text size={18} color={theme.zinc[500]}>
-                R$ 100,00 / Sessão
+                {parseCurrency(data.price)} / Sessão
               </Text>
             </View>
             <View style={styles.row}>

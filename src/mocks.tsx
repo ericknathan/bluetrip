@@ -10,7 +10,7 @@ export function generateEvent(withSpot = true): EventModel {
     name: faker.company.name(),
     description: faker.lorem.paragraphs(),
     price: faker.number.float({ min: 0, max: 500 }),
-    imageUrl: faker.image.url(),
+    imageUrl: faker.image.urlLoremFlickr({ category: "event" }),
     startDate: startDate.toString(),
     endDate: dayjs(startDate).add(2, "hour").toString(),
     touristicSpot: withSpot ? generateTouristicSpot(false) : undefined,

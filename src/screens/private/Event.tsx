@@ -7,10 +7,12 @@ import type { ScreenProps } from "@/navigation";
 import { theme } from "@/styles";
 import dayjs from "dayjs";
 import { Calendar, MapPin } from "phosphor-react-native";
+import { parseCurrency } from "@/helpers/parsers";
 
 export function EventScreen({ route, navigation }: ScreenProps<"Event">) {
   const data = route.params as EventModel;
   const address = data.touristicSpot!.address;
+  const startDate = dayjs(data.startDate);
 
   return (
     <ScrollView style={{ flex: 1 }}>
@@ -28,7 +30,7 @@ export function EventScreen({ route, navigation }: ScreenProps<"Event">) {
             {data.name}
           </Text>
           <Text size={18} color={theme.zinc[500]}>
-            R$ 100,00 / Sessão
+            {parseCurrency(data.price)} / Sessão
           </Text>
         </View>
         <View style={styles.addressContainer}>
@@ -41,15 +43,18 @@ export function EventScreen({ route, navigation }: ScreenProps<"Event">) {
         <View style={styles.dateContainer}>
           <View style={styles.day}>
             <Text size={20} align="center" weight="semibold">
-              {dayjs(data.startDate).format("DD")}
+              {startDate.format("DD")}
             </Text>
             <Text size={12} align="center" lineHeight={14}>
-              {dayjs(data.startDate).format("MMM").toUpperCase()}
+              {startDate.format("MMM").toUpperCase()}
             </Text>
           </View>
           <View style={{ flex: 1 }}>
-            <Text weight="semibold">Tuesday</Text>
-            <Text color={theme.zinc[500]}>Início 10:00 - Fim 12:00</Text>
+            <Text weight="semibold">{startDate.format("dddd")}</Text>
+            <Text color={theme.zinc[500]}>
+              Início {startDate.format("HH:mm")} - Fim{" "}
+              {dayjs(data.endDate).format("HH:mm")}
+            </Text>
           </View>
           <Button onPress={() => navigation.navigate("Reservation")}>
             <Calendar color={theme.white} />

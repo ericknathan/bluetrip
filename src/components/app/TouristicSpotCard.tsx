@@ -1,6 +1,7 @@
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
 import { Badge, Text } from "@/components/ui";
+import { parseCurrency } from "@/helpers/parsers";
 import type { TouristicSpotModel } from "@/models";
 import { theme } from "@/styles";
 import { useNavigation } from "@react-navigation/native";
@@ -22,7 +23,7 @@ export function TouristicSpotCard({
       style={[
         styles.container,
         {
-          width: full ? "100%" : 250,
+          width: full ? "100%" : 280,
         },
       ]}
       activeOpacity={0.7}
@@ -35,7 +36,7 @@ export function TouristicSpotCard({
         }}
       />
       <View style={styles.details}>
-        <View style={[styles.row, { flex: 1, maxWidth: full ? "100%" : 250 }]}>
+        <View style={[styles.row, { flex: 1, maxWidth: full ? "100%" : 280 }]}>
           <Text
             weight="semibold"
             size={16}
@@ -45,7 +46,7 @@ export function TouristicSpotCard({
             {data.name}
           </Text>
           <Text size={14} color={theme.zinc[500]}>
-            R$ 100,00 / Noite
+            {parseCurrency(data.price)} / Sessão
           </Text>
         </View>
         <View style={styles.row}>
@@ -59,8 +60,8 @@ export function TouristicSpotCard({
 
 const styles = StyleSheet.create({
   container: {
-    gap: 8,
-    height: 224,
+    backgroundColor: theme.zinc[100],
+    borderRadius: 12,
   },
   image: {
     width: "100%",
@@ -70,6 +71,8 @@ const styles = StyleSheet.create({
   details: {
     justifyContent: "space-between",
     flex: 1,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
   },
   row: {
     flexDirection: "row",

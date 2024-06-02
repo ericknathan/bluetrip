@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import dayjs from "dayjs";
 import { CalendarBlank, MapPin } from "phosphor-react-native";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
 import type { EventModel } from "@/models";
 import { theme } from "@/styles";
@@ -20,15 +20,16 @@ export function EventCard({ data }: EventCardProps) {
       activeOpacity={0.7}
       onPress={() => navigation.navigate("Event", data)}
     >
-      <View style={styles.date}>
-        <Text color={theme.white} align="center" weight="semibold" size={20}>
-          {dayjs(data.startDate).format("DD")}
-        </Text>
-        <Text color={theme.white} align="center" size={12} lineHeight={14}>
-          {dayjs(data.startDate).format("MMM").toUpperCase()}
-        </Text>
-      </View>
+      <Image source={{ uri: data.imageUrl }} style={styles.image} />
       <View style={styles.content}>
+        <View style={styles.date}>
+          <Text color={theme.white} align="center" weight="semibold" size={20}>
+            {dayjs(data.startDate).format("DD")}
+          </Text>
+          <Text color={theme.white} align="center" size={12} lineHeight={14}>
+            {dayjs(data.startDate).format("MMM").toUpperCase()}
+          </Text>
+        </View>
         <Badge style={styles.badge}>
           {data.touristicSpot?.name.slice(0, 23)}
         </Badge>
@@ -75,12 +76,12 @@ export function EventCard({ data }: EventCardProps) {
 
 const styles = StyleSheet.create({
   container: {
-    position: "relative",
     height: "auto",
+    backgroundColor: theme.zinc[100],
   },
   date: {
     position: "absolute",
-    top: 0,
+    top: -22,
     left: 16,
 
     paddingVertical: 8,
@@ -90,13 +91,18 @@ const styles = StyleSheet.create({
     backgroundColor: theme.primary[500],
     zIndex: 10,
   },
+  image: {
+    width: "100%",
+    height: 160,
+    borderRadius: 10,
+  },
   badge: { marginLeft: "auto", marginBottom: 12 },
   content: {
+    position: "relative",
     padding: 16,
-    borderRadius: 8,
-    marginTop: 20,
+    borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8,
 
-    backgroundColor: theme.zinc[100],
     width: 260,
     flex: 1,
   },
