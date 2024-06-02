@@ -10,10 +10,12 @@ import { type InputProps } from "./Input";
 
 interface DatePickerProps extends FormInputProps, Omit<InputProps, "onChange"> {
   onChange?: (date: Date) => void;
+  mode?: "date" | "time";
 }
 
 export function DatePicker({
   onChange: onChangeDate,
+  mode = "date",
   ...props
 }: DatePickerProps) {
   const [showComponent, setShowComponent] = useState(false);
@@ -33,8 +35,9 @@ export function DatePicker({
       DateTimePickerAndroid.open({
         value: date || new Date(),
         onChange,
-        mode: "date",
-        maximumDate: new Date(),
+        mode,
+        maximumDate: mode === "time" ? undefined : new Date(),
+        minuteInterval: 15,
       });
     } else {
       setShowComponent(true);
@@ -46,16 +49,24 @@ export function DatePicker({
       <TouchableOpacity activeOpacity={1} onPress={showDatePicker}>
         <FormInput
           readOnly
-          value={dayjs(date).format("DD/MM/YYYY")}
+          placeholder={
+            mode === "time" ? "Selecione um horário" : "Selecione uma data"
+          }
+          value={
+            !date
+              ? ""
+              : dayjs(date).format(mode === "date" ? "DD/MM/YYYY" : "HH:mm")
+          }
           {...props}
         />
       </TouchableOpacity>
       {showComponent ? (
         <DateTimePicker
           value={date || new Date()}
-          mode="date"
+          mode={mode}
           onChange={onChange}
           maximumDate={new Date()}
+          minuteInterval={15}
         />
       ) : null}
     </View>

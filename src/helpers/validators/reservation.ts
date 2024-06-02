@@ -14,5 +14,6 @@ export const createReservationSchema = z.object({
     required_error: "A forma de pagamento é obrigatória",
   }),
   date: z.string({ required_error: "A data da reserva é obrigatória" }),
+  time: z.string({ required_error: "O horário da reserva é obrigatório" }),
 });
 export type CreateReservationSchema = z.infer<typeof createReservationSchema>;

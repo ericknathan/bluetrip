@@ -5,6 +5,7 @@ import { Header } from "@/components/app";
 import {
   Button,
   Calendar,
+  DatePicker,
   FormInput,
   FormSelectGroup,
   Label,
@@ -18,6 +19,7 @@ import {
 import type { ScreenProps } from "@/navigation";
 import { theme } from "@/styles";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 export function ReservationScreen({ navigation }: ScreenProps<"Reservation">) {
@@ -27,14 +29,19 @@ export function ReservationScreen({ navigation }: ScreenProps<"Reservation">) {
     watch,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<CreateReservationSchema>({
     resolver: zodResolver(createReservationSchema),
   });
 
   function onCreateReservation(data: CreateReservationSchema) {
-    console.log(data)
+    console.log(data);
     navigation.navigate("ReservationSuccess");
   }
+
+  useEffect(() => {
+    reset();
+  }, []);
 
   return (
     <ScrollView style={{ flex: 1 }}>
@@ -55,6 +62,7 @@ export function ReservationScreen({ navigation }: ScreenProps<"Reservation">) {
           control={control}
           name="quantity"
           label="Quantidade de pessoas"
+          placeholder="Informe a quantidade de pessoas"
           keyboardType="numeric"
           maxLength={2}
         />
@@ -83,6 +91,13 @@ export function ReservationScreen({ navigation }: ScreenProps<"Reservation">) {
           />
           <ErrorMessage>{errors.date?.message}</ErrorMessage>
         </View>
+        <DatePicker
+          name="time"
+          control={control}
+          label="Hora da reserva"
+          mode="time"
+          onChange={(time) => setValue("time", time.toString())}
+        />
 
         <Button onPress={handleSubmit(onCreateReservation)}>Confirmar</Button>
       </View>
