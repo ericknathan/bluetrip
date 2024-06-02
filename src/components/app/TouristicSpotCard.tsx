@@ -8,14 +8,23 @@ import { AverageStars } from "./AverageStars";
 
 interface TouristicSpotCardProps {
   data: TouristicSpotModel;
+  full?: boolean;
 }
 
-export function TouristicSpotCard({ data }: TouristicSpotCardProps) {
+export function TouristicSpotCard({
+  data,
+  full = false,
+}: TouristicSpotCardProps) {
   const navigation = useNavigation();
 
   return (
     <TouchableOpacity
-      style={styles.container}
+      style={[
+        styles.container,
+        {
+          width: full ? "100%" : 250,
+        },
+      ]}
       activeOpacity={0.7}
       onPress={() => navigation.navigate("TouristSpot", data)}
     >
@@ -26,7 +35,7 @@ export function TouristicSpotCard({ data }: TouristicSpotCardProps) {
         }}
       />
       <View style={styles.details}>
-        <View style={[styles.row, { flex: 1 }]}>
+        <View style={[styles.row, { flex: 1, maxWidth: full ? "100%" : 250 }]}>
           <Text
             weight="semibold"
             size={16}
@@ -51,7 +60,6 @@ export function TouristicSpotCard({ data }: TouristicSpotCardProps) {
 const styles = StyleSheet.create({
   container: {
     gap: 8,
-    width: 250,
     height: 224,
   },
   image: {
@@ -67,7 +75,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    maxWidth: 250,
   },
   title: {},
 });

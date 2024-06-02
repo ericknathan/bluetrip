@@ -6,6 +6,7 @@ export interface TextProps extends NativeTextProps {
   size?: number;
   align?: "left" | "center" | "right";
   color?: string;
+  lineHeight?: number;
 }
 
 export function Text({
@@ -14,6 +15,7 @@ export function Text({
   size = 14,
   align = "left",
   color = theme.zinc[900],
+  lineHeight,
   style,
   ...props
 }: TextProps) {
@@ -24,6 +26,7 @@ export function Text({
           fontFamily: fontFamily[weight],
           fontSize: size,
           textAlign: align,
+          lineHeight,
           color,
         },
         style,

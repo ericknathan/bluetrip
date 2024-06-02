@@ -24,12 +24,14 @@ export function EventCard({ data }: EventCardProps) {
         <Text color={theme.white} align="center" weight="semibold" size={20}>
           {dayjs(data.startDate).format("DD")}
         </Text>
-        <Text color={theme.white} align="center" size={12}>
-          {dayjs(data.startDate).format("MMMM").toUpperCase()}
+        <Text color={theme.white} align="center" size={12} lineHeight={14}>
+          {dayjs(data.startDate).format("MMM").toUpperCase()}
         </Text>
       </View>
       <View style={styles.content}>
-        <Badge style={styles.badge}>{data.touristicSpot?.name.slice(0, 23)}</Badge>
+        <Badge style={styles.badge}>
+          {data.touristicSpot?.name.slice(0, 23)}
+        </Badge>
         <Text size={18} weight="semibold">
           {data.name}
         </Text>
@@ -82,7 +84,7 @@ const styles = StyleSheet.create({
     left: 16,
 
     paddingVertical: 8,
-    paddingHorizontal: 12,
+    paddingHorizontal: 16,
     borderRadius: 8,
 
     backgroundColor: theme.primary[500],
@@ -92,7 +94,7 @@ const styles = StyleSheet.create({
   content: {
     padding: 16,
     borderRadius: 8,
-    marginTop: 28,
+    marginTop: 20,
 
     backgroundColor: theme.zinc[100],
     width: 260,
