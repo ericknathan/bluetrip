@@ -2,6 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
   CalendarBlank,
   MapTrifold,
+  Scan,
   Storefront,
   User,
 } from "phosphor-react-native";
@@ -12,6 +13,7 @@ import {
   AccountScreen,
   CommercesScreen,
   EventsScreen,
+  ScannerScreen,
   TouristSpotsScreen,
 } from "./private";
 
@@ -52,6 +54,14 @@ export function TabRoutes() {
         options={{
           tabBarIcon: ({ color }) => <CalendarBlank color={color} />,
           tabBarLabel: "Eventos",
+        }}
+      />
+      <Tab.Screen
+        name="Scanner"
+        component={ScannerScreen}
+        options={{
+          tabBarIcon: ({ color }) => <Scan color={color} />,
+          tabBarLabel: "Scanner",
         }}
       />
       <Tab.Screen

@@ -7,3 +7,4 @@ export * from "./Reservation";
 export * from "./ReservationSuccess";
 export * from "./TouristSpot";
 export * from "./TouristSpots";
+export * from "./Scanner";

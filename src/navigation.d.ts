@@ -16,6 +16,7 @@ export type AppNavigation = {
   Commerce: undefined;
   Reservation: undefined;
   ReservationSuccess: undefined;
+  Scanner: undefined;
 };
 
 declare global {
