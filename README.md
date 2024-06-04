@@ -3,7 +3,13 @@
 ![Capa](.github/cover.png)
 
 ## 💡 Explicação do projeto
-O Bluetrip é uma aplicação móvel de turismo focada em oceanos, rios e lagos. Seu objetivo é fornecer aos usuários informações detalhadas e interativas sobre pontos turísticos aquáticos, eventos, comércios locais e espécies marinhas. A aplicação inclui um scanner inovador que permite aos usuários renderizar modelos 3D de espécies ou partes específicas de pontos turísticos, acompanhados de informações relevantes, enriquecendo a experiência de exploração e aprendizado.
+Bluetrip é uma aplicação mobile de turismo focada em oceanos, rios e lagos. O objetivo principal é fornecer uma experiência enriquecedora para turistas e entusiastas da natureza, oferecendo informações detalhadas sobre pontos turísticos, eventos, comércios locais e espécies da fauna e flora aquática. A aplicação inclui:
+
+- **Pontos Turísticos:** Informações sobre locais de interesse próximos a oceanos, rios e lagos, assim como cuidados a se tomar com o local, informações sobre preservação, dentre outros.
+- **Eventos:** Agenda de eventos relacionados aos pontos turisticos.
+- **Comércios:** Listagem de comércios locais, como restaurantes temáticos, lojas de equipamentos de mergulho, etc.
+- **Scanner 3D:** Um scanner que renderiza modelos 3D acompanhados de informações sobre espécies ou partes do ponto turístico.
+- **Identificador de Espécies:** Um classificador de espécies utilizando inteligência artificial para identificar e fornecer informações sobre diferentes espécies aquáticas.
 
 ## 👥 Equipe
 Este projeto está sendo desenvolvido pelos seguintes membros:
