@@ -17,6 +17,8 @@ export type AppNavigation = {
   Reservation: undefined;
   ReservationSuccess: undefined;
   Scanner: undefined;
+  AugmentedReality: undefined;
+  SpecieIdentifier: undefined;
 };
 
 declare global {

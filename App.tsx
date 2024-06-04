@@ -14,6 +14,7 @@ import { StatusBar } from "expo-status-bar";
 
 import { Router } from "@/screens";
 import { theme } from "@/styles";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function App() {
   let [fontsLoaded, fontError] = useFonts({
@@ -34,7 +35,9 @@ export default function App() {
 
   return (
     <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
-      <Router />
+      <GestureHandlerRootView>
+        <Router />
+      </GestureHandlerRootView>
       <StatusBar
         style="auto"
         translucent={false}

@@ -7,10 +7,12 @@ import {
   WelcomeScreen,
 } from "./auth";
 import {
+  AugmentedRealityScreen,
   CommerceScreen,
   EventScreen,
   ReservationScreen,
   ReservationSuccessScreen,
+  SpecieIdentifierScreen,
   TouristSpotScreen,
 } from "./private";
 import { TabRoutes } from "./tab.routes";
@@ -38,6 +40,15 @@ export function StackRoutes() {
       <Stack.Screen
         name="ReservationSuccess"
         component={ReservationSuccessScreen}
+      />
+
+      <Stack.Screen
+        name="SpecieIdentifier"
+        component={SpecieIdentifierScreen}
+      />
+      <Stack.Screen
+        name="AugmentedReality"
+        component={AugmentedRealityScreen}
       />
     </Stack.Navigator>
   );
