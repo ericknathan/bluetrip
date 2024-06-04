@@ -45,9 +45,14 @@ export function TouristicSpotCard({
           >
             {data.name}
           </Text>
-          <Text size={14} color={theme.zinc[500]}>
-            {parseCurrency(data.price)} / Sessão
-          </Text>
+          <View style={{ alignItems: "flex-end" }}>
+            <Text size={14} color={theme.zinc[500]}>
+              {parseCurrency(data.price)}
+            </Text>
+            <Text size={14} color={theme.zinc[500]} lineHeight={14}>
+              por sessão
+            </Text>
+          </View>
         </View>
         <View style={styles.row}>
           <AverageStars rate={data.averageRate} />
