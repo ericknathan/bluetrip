@@ -8,6 +8,7 @@ import {
 } from "@/components/app";
 
 import { Skeleton } from "@/components/ui";
+import { toast } from "@/helpers";
 import { getTouristicSpotsListRequest } from "@/helpers/requests";
 import type { TouristicSpotModel } from "@/models";
 import { useEffect, useState } from "react";
@@ -35,7 +36,10 @@ export function TouristSpotsScreen() {
           recommended: recommended.data,
         });
       } catch (error) {
-        console.log(error);
+        toast({
+          type: "error",
+          text1: error.message,
+        });
       }
     }
 

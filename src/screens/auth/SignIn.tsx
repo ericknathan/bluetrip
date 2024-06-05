@@ -40,7 +40,6 @@ export function SignInScreen({ route, navigation }: ScreenProps<"SignIn">) {
         routes: [{ name: "App" }],
       });
     } catch (error) {
-      console.log({ error });
       toast({
         type: "error",
         text1: error.message,

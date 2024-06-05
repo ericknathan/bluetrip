@@ -2,6 +2,7 @@ import { ScrollView, StyleSheet, View } from "react-native";
 
 import { DataSection, EventCard, Header, SearchBar } from "@/components/app";
 import { Skeleton } from "@/components/ui";
+import { toast } from "@/helpers";
 import { getEventsListRequest } from "@/helpers/requests";
 import type { EventModel } from "@/models";
 import { useEffect, useState } from "react";
@@ -25,7 +26,10 @@ export function EventsScreen() {
           suggestions: suggestions.data,
         });
       } catch (error) {
-        console.log(error);
+        toast({
+          type: "error",
+          text1: error.message,
+        });
       }
     }
 
