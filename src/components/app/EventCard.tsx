@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
   container: {
     height: "auto",
     backgroundColor: theme.zinc[100],
+    borderRadius: 12
   },
   date: {
     position: "absolute",

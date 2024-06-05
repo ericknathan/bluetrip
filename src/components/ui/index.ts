@@ -7,5 +7,6 @@ export * from "./Form";
 export * from "./Input";
 export * from "./Label";
 export * from "./SelectGroup";
+export * from "./Skeleton";
 export * from "./Text";
 export * from "./Toast";

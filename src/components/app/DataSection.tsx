@@ -14,6 +14,7 @@ export function DataSection({
   title,
   gap = 16,
   horizontal = true,
+  data,
   ...props
 }: DataSectionProps) {
   return (
@@ -32,6 +33,7 @@ export function DataSection({
         )}
         showsHorizontalScrollIndicator={false}
         horizontal={horizontal}
+        data={data || []}
         {...props}
       />
     </View>

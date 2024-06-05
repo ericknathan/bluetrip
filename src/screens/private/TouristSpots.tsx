@@ -7,9 +7,41 @@ import {
   TouristicSpotCard,
 } from "@/components/app";
 
-import { generateTouristicSpot } from "@/mocks";
+import { Skeleton } from "@/components/ui";
+import { getTouristicSpotsListRequest } from "@/helpers/requests";
+import type { TouristicSpotModel } from "@/models";
+import { useEffect, useState } from "react";
 
 export function TouristSpotsScreen() {
+  const [touristicSpots, setTouristicSpots] = useState<{
+    near: TouristicSpotModel[];
+    popular: TouristicSpotModel[];
+    recommended: TouristicSpotModel[];
+  }>();
+
+  useEffect(() => {
+    async function getTouristicSpotsList() {
+      try {
+        const [{ data: near }, { data: popular }, { data: recommended }] =
+          await Promise.all([
+            getTouristicSpotsListRequest("near"),
+            getTouristicSpotsListRequest("popular"),
+            getTouristicSpotsListRequest("recommended"),
+          ]);
+
+        setTouristicSpots({
+          near: near.data,
+          popular: popular.data,
+          recommended: recommended.data,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    getTouristicSpotsList();
+  }, []);
+
   return (
     <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
       <Header title="Pontos turísticos" />
@@ -19,21 +51,34 @@ export function TouristSpotsScreen() {
       <View style={styles.container}>
         <DataSection
           title="Perto de você"
-          data={Array.from({ length: 10 }, generateTouristicSpot)}
+          data={touristicSpots?.near}
           renderItem={({ item }) => <TouristicSpotCard data={item} />}
+          ListEmptyComponent={EmptySkeleton}
         />
         <DataSection
           title="Mais populares"
-          data={Array.from({ length: 10 }, generateTouristicSpot)}
+          data={touristicSpots?.popular}
           renderItem={({ item }) => <TouristicSpotCard data={item} />}
+          ListEmptyComponent={EmptySkeleton}
         />
         <DataSection
           title="Recomendados para você"
-          data={Array.from({ length: 10 }, generateTouristicSpot)}
+          data={touristicSpots?.recommended}
           renderItem={({ item }) => <TouristicSpotCard data={item} />}
+          ListEmptyComponent={EmptySkeleton}
         />
       </View>
     </ScrollView>
+  );
+}
+
+function EmptySkeleton() {
+  return (
+    <View style={{ flexDirection: "row", gap: 20 }}>
+      <Skeleton width={280} height={230} />
+      <Skeleton width={280} height={230} />
+      <Skeleton width={280} height={230} />
+    </View>
   );
 }
 
