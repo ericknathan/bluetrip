@@ -1,7 +1,7 @@
 import { api, isApiError } from "@/helpers";
 import type { EventModel } from "@/models";
 
-export async function getEventsList(category: "next" | "suggestions") {
+export async function getEventsListRequest(category: "next" | "suggestions") {
   try {
     const response = await api.get<{ data: EventModel[] }>("/events", {
       params: {

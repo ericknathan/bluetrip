@@ -1,7 +1,7 @@
 import { api, isApiError } from "@/helpers";
 import type { TouristicSpotModel } from "@/models";
 
-export async function getTouristicSpotsList(
+export async function getTouristicSpotsListRequest(
   category: "near" | "popular" | "recommended"
 ) {
   try {

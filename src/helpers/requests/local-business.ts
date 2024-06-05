@@ -1,7 +1,7 @@
 import { api, isApiError } from "@/helpers";
 import type { LocalBusinessModel } from "@/models";
 
-export async function getLocalBusinessList(
+export async function getLocalBusinessListRequest(
   category: "near" | "popular" | "recommended"
 ) {
   try {
