@@ -30,9 +30,6 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": [
-      "expo-font",
-       "@viro-community/react-viro"
-    ]
+    "plugins": ["expo-font", "@viro-community/react-viro"]
   }
 }
