@@ -19,7 +19,9 @@ export function DatePicker({
   ...props
 }: DatePickerProps) {
   const [showComponent, setShowComponent] = useState(false);
-  const [date, setDate] = useState<Date | undefined>();
+  const [date, setDate] = useState<Date | undefined>(
+    props.control._defaultValues.birthDate
+  );
 
   function onChange(
     event: DateTimePickerEvent,

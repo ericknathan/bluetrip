@@ -10,24 +10,42 @@ import {
 
 import { Header } from "@/components/app";
 import { Button, FormInput, Text } from "@/components/ui";
+import { toast } from "@/helpers";
+import { signInSchema, type SignInSchema } from "@/helpers/validators";
+import { useAuth } from "@/hooks";
 import type { ScreenProps } from "@/navigation";
 import { theme } from "@/styles";
-import { signInSchema, type SignInSchema } from "@/helpers/validators";
 
 export function SignInScreen({ route, navigation }: ScreenProps<"SignIn">) {
-  const { handleSubmit, control, getValues } = useForm<SignInSchema>({
+  const { signIn } = useAuth();
+
+  const {
+    handleSubmit,
+    control,
+    getValues,
+    formState: { isSubmitting },
+  } = useForm<SignInSchema>({
     resolver: zodResolver(signInSchema),
     defaultValues: {
       email: route.params?.email ?? "",
     },
   });
 
-  function onSignIn(data: SignInSchema) {
-    // TODO: send request to backend
-    navigation.reset({
-      index: 0,
-      routes: [{ name: "App" }],
-    });
+  async function onSignIn(data: SignInSchema) {
+    try {
+      await signIn(data);
+
+      navigation.reset({
+        index: 0,
+        routes: [{ name: "App" }],
+      });
+    } catch (error) {
+      console.log({ error });
+      toast({
+        type: "error",
+        text1: error.message,
+      });
+    }
   }
 
   return (
@@ -77,8 +95,11 @@ export function SignInScreen({ route, navigation }: ScreenProps<"SignIn">) {
             Esqueci a senha
           </Text>
         </TouchableOpacity>
-        <Button onPress={handleSubmit(onSignIn)}>Fazer login</Button>
+        <Button onPress={handleSubmit(onSignIn)} isLoading={isSubmitting}>
+          Fazer login
+        </Button>
         <Button
+          disabled={isSubmitting}
           onPress={() =>
             navigation.reset({
               index: 0,

@@ -1,10 +1,3 @@
-export type UserModel = {
-  id: number;
-  email: string;
-  name: string;
-  nationality: string;
-  phone: string;
-  birthDate: string;
-  gender: "m" | "f";
-  language: string;
-};
+import type { UserDataSchema } from "@/helpers/validators";
+
+export type UserModel = Omit<UserDataSchema, "password">;

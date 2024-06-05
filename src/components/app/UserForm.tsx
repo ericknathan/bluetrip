@@ -12,7 +12,23 @@ import {
 } from "@/components/ui";
 import { userDataSchema, type UserDataSchema } from "@/helpers/validators";
 
-const PHONE_MASK = ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+const PHONE_MASK = [
+  "(",
+  /\d/,
+  /\d/,
+  ")",
+  " ",
+  /\d/,
+  /\d/,
+  /\d/,
+  /\d/,
+  /\d/,
+  "-",
+  /\d/,
+  /\d/,
+  /\d/,
+  /\d/,
+];
 
 interface UserFormProps {
   onSubmit: (data: UserDataSchema) => void;
@@ -27,10 +43,11 @@ export function UserForm({
   showPassword = true,
   defaultValues,
 }: UserFormProps) {
-  const { control, handleSubmit, setValue } = useForm<UserDataSchema>({
+  const { control, handleSubmit, setValue, formState: { isSubmitting } } = useForm<UserDataSchema>({
     resolver: zodResolver(userDataSchema),
     defaultValues: {
       password: showPassword ? "" : "Empty123!",
+      nationality: "Brasil",
       ...defaultValues,
     },
   });
@@ -106,7 +123,11 @@ export function UserForm({
           autoComplete="current-password"
         />
       ) : null}
-      <Button onPress={handleSubmit(onSubmit)} style={{ marginTop: 12 }}>
+      <Button
+        onPress={handleSubmit(onSubmit)}
+        style={{ marginTop: 12 }}
+        isLoading={isSubmitting}
+      >
         {buttonLabel}
       </Button>
     </View>

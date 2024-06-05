@@ -4,25 +4,49 @@ import { Image, ScrollView, StyleSheet, View } from "react-native";
 
 import { Header } from "@/components/app";
 import { Button, FormInput, Text } from "@/components/ui";
+import { toast } from "@/helpers";
+import { recoverPasswordRequest } from "@/helpers/requests";
+import {
+  recoverPasswordSchema,
+  type RecoverPasswordSchema,
+} from "@/helpers/validators";
 import type { ScreenProps } from "@/navigation";
-import { recoverPasswordSchema, type RecoverPasswordSchema } from "@/helpers/validators";
 
 export function RecoverPasswordScreen({
   route,
   navigation,
 }: ScreenProps<"RecoverPassword">) {
-  const { control, handleSubmit } = useForm<RecoverPasswordSchema>({
+  const {
+    control,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<RecoverPasswordSchema>({
     resolver: zodResolver(recoverPasswordSchema),
     defaultValues: {
       email: route.params?.email ?? "",
     },
   });
 
-  function onRecoverPassword(data: RecoverPasswordSchema) {
-    navigation.reset({
-      index: 0,
-      routes: [{ name: "Welcome" }, { name: "SignIn", params: data }],
-    });
+  async function onRecoverPassword(data: RecoverPasswordSchema) {
+    try {
+      await recoverPasswordRequest(data);
+
+      toast({
+        type: "success",
+        text1: "E-mail de recuperação enviado",
+        text2: "Verifique sua caixa de entrada",
+      });
+
+      navigation.reset({
+        index: 0,
+        routes: [{ name: "Welcome" }, { name: "SignIn", params: data }],
+      });
+    } catch (error) {
+      toast({
+        type: "error",
+        text1: error.message,
+      });
+    }
   }
 
   return (
@@ -48,7 +72,10 @@ export function RecoverPasswordScreen({
           autoFocus
           autoCapitalize="none"
         />
-        <Button onPress={handleSubmit(onRecoverPassword)}>
+        <Button
+          onPress={handleSubmit(onRecoverPassword)}
+          isLoading={isSubmitting}
+        >
           Enviar e-mail de recuperação
         </Button>
       </View>
