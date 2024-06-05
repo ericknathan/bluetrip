@@ -11,7 +11,7 @@
         "password": string
     }
     ```
-- **Validação:**: [auth.ts](https://github.com/ericknathan/bluetrip/blob/main/src/helpers/validators/auth.ts#L3)
+- **Validação:**: [validators/auth.ts](https://github.com/ericknathan/bluetrip/blob/main/src/helpers/validators/auth.ts#L3)
 - **Exemplos de resposta:**
     ```TS
     // Status: 200
@@ -30,6 +30,7 @@
     // Status: 401
     { "message": "Credenciais incorretas!" }
     ```
+- **Requisição:**:  [requests/auth.ts](https://github.com/ericknathan/bluetrip/blob/main/src/helpers/requests/auth.ts#L9)
 
 ### Cadastro
 - **Rota:** `/auth/cadastro`
@@ -46,7 +47,7 @@
         "password": string
     }
     ```
-- **Validação:**: [auth.ts](https://github.com/ericknathan/bluetrip/blob/main/src/helpers/validators/auth.ts#L22)
+- **Validação:**: [validators/auth.ts](https://github.com/ericknathan/bluetrip/blob/main/src/helpers/validators/auth.ts#L22)
 - **Exemplos de resposta:**
     ```TS
     // Status: 201
@@ -55,6 +56,7 @@
     // Status: 409
     { "message": "O e-mail informado já está sendo utilizado!" }
     ```
+- **Requisição:**:  [requests/auth.ts](https://github.com/ericknathan/bluetrip/blob/main/src/helpers/requests/auth.ts#L26)
 
 ### Recuperação de senha
 - **Rota:** `/auth/recuperar-senha`
@@ -65,12 +67,13 @@
         "email": string
     }
     ```
-- **Validação:**: [auth.ts](https://github.com/ericknathan/bluetrip/blob/main/src/helpers/validators/auth.ts#L67)
+- **Validação:**: [validators/auth.ts](https://github.com/ericknathan/bluetrip/blob/main/src/helpers/validators/auth.ts#L67)
 - **Exemplos de resposta:**
     ```TS
     // Status: 200
     { "message": "Caso a conta exista, foi enviado um e-mail para recuperação de senha!" }
     ```
+- **Requisição:**:  [requests/auth.ts](https://github.com/ericknathan/bluetrip/blob/main/src/helpers/requests/auth.ts#L43)
 
 ## Pontos turísticos
 ### Listagem
@@ -86,6 +89,7 @@
         "data": TouristicSpotModel[];
     }
     ```
+- **Requisição:**:  [requests/touristic-spots.ts](https://github.com/ericknathan/bluetrip/blob/main/src/helpers/requests/touristic-spots.ts#L4)
 
 ## Eventos
 ### Listagem
@@ -101,6 +105,7 @@
         "data": EventModel[];
     }
     ```
+- **Requisição:**:  [requests/events.ts](https://github.com/ericknathan/bluetrip/blob/main/src/helpers/requests/events.ts#L4)
 
 ## Comércios locais
 ### Listagem
@@ -116,6 +121,7 @@
         "data": LocalBusinessModel[];
     }
     ```
+- **Requisição:**:  [requests/local-business.ts](https://github.com/ericknathan/bluetrip/blob/main/src/helpers/requests/local-business.ts#L4)
 
 ## Reservas
 ### Criar reserva
@@ -125,15 +131,16 @@
     ```TS
     {
         "type": "touristic-spot" | "event",
-        "type-id": number,
+        "externalId": number,
         "paymentMethod": "C" | "M" | "P",
         "date": string,
-        "time": string
+        "quantity": number,
     }
     ```
-- **Validação:**: [reservation.ts](https://github.com/ericknathan/bluetrip/blob/main/src/helpers/validators/reservation.ts)
+- **Validação:**: [validators/reservation.ts](https://github.com/ericknathan/bluetrip/blob/main/src/helpers/validators/reservation.ts)
 - **Exemplos de resposta:**
     ```TS
     // Status: 201
     { "message": "Reserva criada com sucesso" }
     ```
+- **Requisição:**:  [requests/reservation.ts](https://github.com/ericknathan/bluetrip/blob/main/src/helpers/requests/reservation.ts#L4)
