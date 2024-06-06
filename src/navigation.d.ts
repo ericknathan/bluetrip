@@ -19,6 +19,7 @@ export type AppNavigation = {
   Scanner: undefined;
   AugmentedReality: undefined;
   SpecieIdentifier: undefined;
+  Specie: { name: string; score: number; type: string; image: string };
 };
 
 declare global {

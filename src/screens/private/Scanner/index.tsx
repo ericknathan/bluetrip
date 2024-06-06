@@ -2,10 +2,21 @@ import { Header } from "@/components/app";
 import { Text } from "@/components/ui";
 import type { ScreenProps } from "@/navigation";
 import { theme } from "@/styles";
+import { useCameraPermissions } from "expo-camera";
 import { CubeFocus, FishSimple } from "phosphor-react-native";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 
 export function ScannerScreen({ navigation }: ScreenProps<"Scanner">) {
+  const [permission, requestPermission] = useCameraPermissions();
+
+  async function handleNavigate(name: "AugmentedReality" | "SpecieIdentifier") {
+    if(!permission?.granted) {
+      await requestPermission();
+    }
+
+    navigation.navigate(name);
+  }
+
   return (
     <View style={{ flex: 1 }}>
       <Header title="Scanner" />
@@ -13,7 +24,7 @@ export function ScannerScreen({ navigation }: ScreenProps<"Scanner">) {
         <TouchableOpacity
           style={styles.option}
           activeOpacity={0.7}
-          onPress={() => navigation.navigate("AugmentedReality")}
+          onPress={() => handleNavigate("AugmentedReality")}
         >
           <CubeFocus size={56} color={theme.primary[500]} />
           <Text weight="semibold" size={24} color={theme.zinc[700]}>
@@ -27,7 +38,7 @@ export function ScannerScreen({ navigation }: ScreenProps<"Scanner">) {
         <TouchableOpacity
           style={styles.option}
           activeOpacity={0.7}
-          onPress={() => navigation.navigate("SpecieIdentifier")}
+          onPress={() => handleNavigate("SpecieIdentifier")}
         >
           <FishSimple size={56} color={theme.primary[500]} />
           <Text weight="semibold" size={24} color={theme.zinc[700]}>

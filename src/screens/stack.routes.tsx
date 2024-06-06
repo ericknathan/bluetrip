@@ -14,6 +14,7 @@ import {
   ReservationScreen,
   ReservationSuccessScreen,
   SpecieIdentifierScreen,
+  SpecieScreen,
   TouristSpotScreen,
 } from "./private";
 import { TabRoutes } from "./tab.routes";
@@ -44,6 +45,10 @@ export function StackRoutes() {
           <Stack.Screen
             name="SpecieIdentifier"
             component={SpecieIdentifierScreen}
+          />
+          <Stack.Screen
+            name="Specie"
+            component={SpecieScreen}
           />
           <Stack.Screen
             name="AugmentedReality"

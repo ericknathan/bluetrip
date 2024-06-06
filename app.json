@@ -30,6 +30,15 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": ["expo-font", "@viro-community/react-viro"]
+    "plugins": [
+      "expo-font",
+      "@viro-community/react-viro",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Bluetrip precisa de acesso para sua câmera."
+        }
+      ]
+    ]
   }
 }
