@@ -1,6 +1,12 @@
 import { CameraView, useCameraPermissions } from "expo-camera";
-import { useRef } from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { useRef, useState } from "react";
+import {
+  ActivityIndicator,
+  ImageBackground,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 import { Header } from "@/components/app";
 import { toast } from "@/helpers";
@@ -15,6 +21,8 @@ export function SpecieIdentifierScreen({
 }: ScreenProps<"SpecieIdentifier">) {
   const cameraRef = useRef<CameraView>(null);
   const [permission] = useCameraPermissions();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [image, setImage] = useState<string>();
 
   if (!permission) {
     return <View />;
@@ -22,13 +30,18 @@ export function SpecieIdentifierScreen({
 
   async function handleTakePicture() {
     try {
+      setIsSubmitting(true);
+
       const picture = await cameraRef.current?.takePictureAsync({
         imageType: "png",
         quality: 1,
       });
 
+      setImage(picture?.uri);
+
       const response = await identifySpecieRequest(picture?.uri!);
 
+      setIsSubmitting(false);
       navigation.navigate("Specie", {
         ...response.data,
         image: picture?.uri!,
@@ -38,6 +51,8 @@ export function SpecieIdentifierScreen({
         type: "error",
         text1: "Erro ao identificar espécie",
       });
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -45,14 +60,20 @@ export function SpecieIdentifierScreen({
     <View style={styles.container}>
       <Header title="Espécies" />
       <CameraView style={styles.camera} facing="back" ref={cameraRef}>
-        <View style={styles.buttonsContainer}>
-          <TouchableOpacity
-            style={styles.pictureButtonContainer}
-            onPress={handleTakePicture}
-          >
-            <View style={styles.pictureButton} />
-          </TouchableOpacity>
-        </View>
+        {isSubmitting ? (
+          <ImageBackground style={styles.loading} source={{ uri: image }}>
+            <ActivityIndicator size="large" color={theme.zinc[50]} />
+          </ImageBackground>
+        ) : (
+          <View style={styles.buttonsContainer}>
+            <TouchableOpacity
+              style={styles.pictureButtonContainer}
+              onPress={handleTakePicture}
+            >
+              <View style={styles.pictureButton} />
+            </TouchableOpacity>
+          </View>
+        )}
       </CameraView>
     </View>
   );
@@ -88,5 +109,14 @@ const styles = StyleSheet.create({
     borderRadius: 99,
 
     backgroundColor: theme.zinc[50],
+  },
+  loading: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
