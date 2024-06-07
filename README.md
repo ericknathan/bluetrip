@@ -30,6 +30,9 @@ As principais tecnologias, bibliotecas, ecossistemas e frameworks incluídos no 
 - [React Navigation](https://reactnavigation.org)
 - [React Native Bottom Sheet](https://github.com/gorhom/react-native-bottom-sheet)
 
+## 📄 Documentação de Integração
+O documento de integração está disponível no arquivo [API.md](./API.md). Nele, você encontrará a explicação de cada endpoint utilizado, com exemplos de requisições e seus respectivos retornos.
+
 ## ⚙️ Como executar a aplicação
 Para executar a aplicação, siga os passos abaixo:
 
@@ -58,10 +61,10 @@ Para executar a aplicação, siga os passos abaixo:
 
 4. **Executar a aplicação**:
    - Inicie o servidor de desenvolvimento do Expo na plataforma desejada:
-     ```sh
+     ```TS
      npx expo run:android
      // ou
      npx expo run:ios
      ```
-## 📄 Documentação de Integração
-O documento de integração está disponível no arquivo [API.md](./API.md). Nele, você encontrará a explicação de cada endpoint utilizado, com exemplos de requisições e seus respectivos retornos.
+    > [!WARNING]  
+    > Lembre-se que, por incluir bibliotecas nativas, utilizamos a arquitetura do Expo Bare Workflow, portanto não é possível executar o aplicativo por completo através do Expo Go, entretanto recomendamos que utilize os comandos acima para fazer o build e download do aplicativo direto no dispositivo.

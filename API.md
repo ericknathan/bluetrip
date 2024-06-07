@@ -1,8 +1,18 @@
-# 🔱 Bluetrip - Documentação de integração
+# 🔱 Bluetrip - Documentação de Integração
+
+Bem-vindo à documentação de integração da Bluetrip! Este documento fornece todas as informações necessárias para utilizar os serviços oferecidos pela Bluetrip. Nossa plataforma é composta por dois microserviços principais:
+
+1. **Manager**: Responsável pela obtenção de dados gerais, como autenticação, listagem de pontos turísticos, eventos e comércios locais, além de gerenciamento de reservas. Este serviço é originalmente desenvolvido em Java e está disponível em [https://bluetrip.onrender.com](https://bluetrip.onrender.com).
+
+2. **AI**: Responsável pela funcionalidade de identificação de espécies, permitindo o reconhecimento de espécies a partir de arquivos enviados. Este serviço é desenvolvido em Python e está disponível em [https://bluetrip-ai.onrender.com](https://bluetrip-ai.onrender.com).
+
+A seguir, você encontrará detalhes sobre as rotas, métodos, corpos de requisição, exemplos de resposta e outras informações relevantes para integrar-se aos nossos serviços de maneira eficiente e eficaz.
 
 ## Autenticação
 ### Login
+- **Descrição:** Autenticar um usuário utilizando email e senha.
 - **Rota:** `/auth/login`
+- **Serviço:** Manager
 - **Método:** POST
 - **Corpo:**
     ```TS
@@ -33,7 +43,9 @@
 - **Requisição:**:  [requests/auth.ts](https://github.com/ericknathan/bluetrip/blob/main/src/helpers/requests/auth.ts#L9)
 
 ### Cadastro
+- **Descrição:** Registrar um novo usuário na plataforma.
 - **Rota:** `/auth/cadastro`
+- **Serviço:** Manager
 - **Método:** POST
 - **Corpo:**
     ```TS
@@ -59,7 +71,9 @@
 - **Requisição:**:  [requests/auth.ts](https://github.com/ericknathan/bluetrip/blob/main/src/helpers/requests/auth.ts#L26)
 
 ### Recuperação de senha
+- **Descrição:** Enviar um e-mail para recuperação de senha caso a conta exista.
 - **Rota:** `/auth/recuperar-senha`
+- **Serviço:** Manager
 - **Método:** POST
 - **Corpo:**
     ```TS
@@ -77,7 +91,9 @@
 
 ## Pontos turísticos
 ### Listagem
+- **Descrição:** Listar pontos turísticos com base em categorias como "próximos", "populares" ou "recomendados".
 - **Rota:** `/touristic-spots`
+- **Serviço:** Manager
 - **Parâmetros:** `category= 'near' | 'popular' | 'recommended'`
 - **Método:** GET
 - **Model:** [TouristicSpotModel](https://github.com/ericknathan/bluetrip/blob/main/src/models/tourist-spot.model.ts#L3)
@@ -93,7 +109,9 @@
 
 ## Eventos
 ### Listagem
+- **Descrição:** Listar eventos com base em categorias como "próximos" ou "sugestões".
 - **Rota:** `/events`
+- **Serviço:** Manager
 - **Parâmetros:** `category= 'next' | 'suggestions'`
 - **Método:** GET
 - **Model:** [EventModel](https://github.com/ericknathan/bluetrip/blob/main/src/models/tourist-spot.model.ts#L16)
@@ -109,8 +127,9 @@
 
 ## Comércios locais
 ### Listagem
+- **Descrição:** Listar comércios locais disponíveis na região.
 - **Rota:** `/local-business`
-- **Parâmetros:** `category= 'near' | 'popular' | 'recommended'`
+- **Serviço:** Manager
 - **Método:** GET
 - **Model:** [LocalBusinessModel](https://github.com/ericknathan/bluetrip/blob/main/src/models/local-business.model.ts)
 - **Exemplos de resposta:**
@@ -125,7 +144,9 @@
 
 ## Reservas
 ### Criar reserva
+- **Descrição:** Criar uma nova reserva para um ponto turístico ou evento.
 - **Rota:** `/reservation`
+- **Serviço:** Manager
 - **Método:** POST
 - **Corpo:**
     ```TS
@@ -144,3 +165,31 @@
     { "message": "Reserva criada com sucesso" }
     ```
 - **Requisição:**:  [requests/reservation.ts](https://github.com/ericknathan/bluetrip/blob/main/src/helpers/requests/reservation.ts#L4)
+
+## Identificação de espécies
+### Identificar espécie
+- **Descrição:** Identificar uma espécie a partir de uma imagem enviada.
+- **Rota:** `/identify-specie`
+- **Serviço:** AI
+- **Método:** POST
+- **Corpo:**
+    ```TS
+    {
+        "file": File
+    }
+    ```
+- **Cabeçalho:**
+    ```TS
+    {
+        "Content-Type": "multipart/form-data",
+    }
+    ```
+- **Exemplos de resposta:**
+    ```TS
+    // Status: 200
+    {
+        "name": "Peixe Dourado",
+        "score": 99.745,
+        "type": "Peixe"
+    }
+    ```
