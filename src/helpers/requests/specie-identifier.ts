@@ -10,7 +10,7 @@ export async function identifySpecieRequest(imageUri: string) {
     } as unknown as Blob);
 
     const response = await api.post(
-      "http://192.168.15.14:8000/identify-specie",
+      "https://bluetrip-ai.onrender.com/identify-specie",
       data,
       {
         headers: {

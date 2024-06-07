@@ -1,5 +1,5 @@
 import { NavigationProp, RouteProp } from "@react-navigation/native";
-import type { EventModel } from "./models";
+import type { EventModel, LocalBusinessModel } from "./models";
 
 export type AppNavigation = {
   App: undefined;
@@ -13,7 +13,7 @@ export type AppNavigation = {
   Account: undefined;
   TouristSpot: TouristicSpotModel;
   Event: EventModel;
-  Commerce: undefined;
+  Commerce: LocalBusinessModel;
   Reservation: undefined;
   ReservationSuccess: undefined;
   Scanner: undefined;
