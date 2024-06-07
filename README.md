@@ -66,5 +66,5 @@ Para executar a aplicação, siga os passos abaixo:
      // ou
      npx expo run:ios
      ```
-    > [!WARNING]  
-    > Lembre-se que, por incluir bibliotecas nativas, utilizamos a arquitetura do Expo Bare Workflow, portanto não é possível executar o aplicativo por completo através do Expo Go, entretanto recomendamos que utilize os comandos acima para fazer o build e download do aplicativo direto no dispositivo.
+> [!WARNING]  
+> Lembre-se que, por incluir bibliotecas nativas, utilizamos a arquitetura do Expo Bare Workflow, portanto não é possível executar o aplicativo por completo através do Expo Go, entretanto recomendamos que utilize os comandos acima para fazer o build e download do aplicativo direto no dispositivo.
