@@ -111,7 +111,14 @@ export function TouristSpotScreen({
         ) : null}
       </ScrollView>
       <View style={styles.buttonContainer}>
-        <Button onPress={() => navigation.navigate("Reservation")}>
+        <Button
+          onPress={() =>
+            navigation.navigate("Reservation", {
+              externalId: data.id,
+              from: "touristic-spot",
+            })
+          }
+        >
           Escolher data da reserva
         </Button>
       </View>

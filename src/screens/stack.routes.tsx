@@ -29,6 +29,7 @@ export function StackRoutes() {
       screenOptions={{
         headerShown: false,
       }}
+      initialRouteName="Scanner"
     >
       {!!user ? (
         <>
@@ -46,10 +47,7 @@ export function StackRoutes() {
             name="SpecieIdentifier"
             component={SpecieIdentifierScreen}
           />
-          <Stack.Screen
-            name="Specie"
-            component={SpecieScreen}
-          />
+          <Stack.Screen name="Specie" component={SpecieScreen} />
           <Stack.Screen
             name="AugmentedReality"
             component={AugmentedRealityScreen}

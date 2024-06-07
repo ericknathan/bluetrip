@@ -1,9 +1,17 @@
 import { api, isApiError } from "@/helpers";
-import type { ReservationModel } from "@/models";
+import { getUser } from "@/providers";
+import type { CreateReservationSchema } from "../validators/reservation";
 
-export async function createReservationRequest(data: ReservationModel) {
+export async function createReservationRequest(data: CreateReservationSchema) {
   try {
-    const response = await api.post("/resevartion", data);
+    const user = await getUser();
+
+    const response = await api.post("/reservation", data, {
+      headers: {
+        "x-user-email": user.email,
+      },
+    });
+
     return response;
   } catch (error) {
     if (isApiError(error)) {

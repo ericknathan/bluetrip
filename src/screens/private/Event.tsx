@@ -2,12 +2,12 @@ import { Image, ScrollView, StyleSheet, View } from "react-native";
 
 import { Header, TouristicSpotCard } from "@/components/app";
 import { Button, Text } from "@/components/ui";
+import { parseCurrency } from "@/helpers/parsers";
 import type { EventModel } from "@/models";
 import type { ScreenProps } from "@/navigation";
 import { theme } from "@/styles";
 import dayjs from "dayjs";
 import { Calendar, MapPin } from "phosphor-react-native";
-import { parseCurrency } from "@/helpers/parsers";
 
 export function EventScreen({ route, navigation }: ScreenProps<"Event">) {
   const data = route.params as EventModel;
@@ -56,7 +56,14 @@ export function EventScreen({ route, navigation }: ScreenProps<"Event">) {
               {dayjs(data.endDate).format("HH:mm")}
             </Text>
           </View>
-          <Button onPress={() => navigation.navigate("Reservation")}>
+          <Button
+            onPress={() =>
+              navigation.navigate("Reservation", {
+                externalId: data.id,
+                from: "event",
+              })
+            }
+          >
             <Calendar color={theme.white} />
           </Button>
         </View>

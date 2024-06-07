@@ -1,6 +1,10 @@
 import { z } from "zod";
 
 export const createReservationSchema = z.object({
+  externalId: z.number({ required_error: "O identificador é obrigatório" }),
+  type: z.enum(["event", "touristic-spot"], {
+    required_error: "O tipo é obrigatório",
+  }),
   quantity: z.coerce
     .number({
       required_error: "A quantidade de pessoas é obrigatória",

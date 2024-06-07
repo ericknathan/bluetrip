@@ -14,7 +14,7 @@ export type AppNavigation = {
   TouristSpot: TouristicSpotModel;
   Event: EventModel;
   Commerce: LocalBusinessModel;
-  Reservation: undefined;
+  Reservation: { externalId: number; from: "event" | "touristic-spot" };
   ReservationSuccess: undefined;
   Scanner: undefined;
   AugmentedReality: undefined;

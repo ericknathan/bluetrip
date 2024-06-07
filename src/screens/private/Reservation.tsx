@@ -12,6 +12,7 @@ import {
   Text,
 } from "@/components/ui";
 import { ErrorMessage } from "@/components/ui/ErrorMessage";
+import { createReservationRequest } from "@/helpers/requests";
 import {
   CreateReservationSchema,
   createReservationSchema,
@@ -19,10 +20,16 @@ import {
 import type { ScreenProps } from "@/navigation";
 import { theme } from "@/styles";
 import { zodResolver } from "@hookform/resolvers/zod";
+import dayjs from "dayjs";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "@/helpers";
 
-export function ReservationScreen({ navigation }: ScreenProps<"Reservation">) {
+export function ReservationScreen({
+  navigation,
+  route,
+}: ScreenProps<"Reservation">) {
+  const { externalId, from } = route.params;
   const {
     control,
     setValue,
@@ -32,11 +39,22 @@ export function ReservationScreen({ navigation }: ScreenProps<"Reservation">) {
     reset,
   } = useForm<CreateReservationSchema>({
     resolver: zodResolver(createReservationSchema),
+    defaultValues: { externalId, type: from },
   });
 
-  function onCreateReservation(data: CreateReservationSchema) {
-    console.log(data);
-    navigation.navigate("ReservationSuccess");
+  async function onCreateReservation(data: CreateReservationSchema) {
+    try {
+      await createReservationRequest({
+        ...data,
+        date: dayjs(data.date).add(dayjs(data.time).hour(), "hour").format(),
+      });
+      navigation.navigate("ReservationSuccess");
+    } catch (error) {
+      toast({
+        type: "error",
+        text1: error.message,
+      });
+    }
   }
 
   useEffect(() => {
