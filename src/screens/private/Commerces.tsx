@@ -35,7 +35,7 @@ export function CommercesScreen() {
 
       <View style={styles.container}>
         {commerces?.map((commerce) => (
-          <LocalBusinessCard data={commerce} />
+          <LocalBusinessCard data={commerce} key={commerce.id} />
         ))}
       </View>
     </ScrollView>
