@@ -26,9 +26,13 @@ As principais tecnologias, bibliotecas, ecossistemas e frameworks incluídos no 
 - [React Native](https://reactnative.dev)
 - [Expo](https://expo.dev)
 - [ViroReact](https://viro-community.readme.io)
+- [Expo Camera](https://docs.expo.dev/versions/latest/sdk/camera)
 - [React Hook Form](https://react-hook-form.com)
 - [React Navigation](https://reactnavigation.org)
 - [React Native Bottom Sheet](https://github.com/gorhom/react-native-bottom-sheet)
+- [React Native Maps](https://github.com/react-native-maps/react-native-maps)
+- [React Native Async Storage](https://docs.expo.dev/versions/latest/sdk/async-storage)
+- [Axios](https://axios-http.com/docs/intro)
 
 ## 📄 Documentação de Integração
 O documento de integração está disponível no arquivo [API.md](./API.md). Nele, você encontrará a explicação de cada endpoint utilizado, com exemplos de requisições e seus respectivos retornos.

@@ -41,6 +41,7 @@ A seguir, você encontrará detalhes sobre as rotas, métodos, corpos de requisi
     { "message": "Credenciais incorretas!" }
     ```
 - **Requisição:**:  [requests/auth.ts](https://github.com/ericknathan/bluetrip/blob/main/src/helpers/requests/auth.ts#L9)
+- **Utilização:** [screens/auth/SignIn.ts](https://github.com/ericknathan/bluetrip/blob/main/src/screens/auth/SignIn.ts)
 
 ### Cadastro
 - **Descrição:** Registrar um novo usuário na plataforma.
@@ -69,6 +70,7 @@ A seguir, você encontrará detalhes sobre as rotas, métodos, corpos de requisi
     { "message": "O e-mail informado já está sendo utilizado!" }
     ```
 - **Requisição:**:  [requests/auth.ts](https://github.com/ericknathan/bluetrip/blob/main/src/helpers/requests/auth.ts#L26)
+- **Utilização:** [screens/auth/SignUp.ts](https://github.com/ericknathan/bluetrip/blob/main/src/screens/auth/SignUp.ts)
 
 ### Recuperação de senha
 - **Descrição:** Enviar um e-mail para recuperação de senha caso a conta exista.
@@ -88,6 +90,7 @@ A seguir, você encontrará detalhes sobre as rotas, métodos, corpos de requisi
     { "message": "Caso a conta exista, foi enviado um e-mail para recuperação de senha!" }
     ```
 - **Requisição:**:  [requests/auth.ts](https://github.com/ericknathan/bluetrip/blob/main/src/helpers/requests/auth.ts#L43)
+- **Utilização:** [screens/auth/RecoverPassword.ts](https://github.com/ericknathan/bluetrip/blob/main/src/screens/auth/RecoverPassword.ts)
 
 ## Pontos turísticos
 ### Listagem
@@ -106,6 +109,7 @@ A seguir, você encontrará detalhes sobre as rotas, métodos, corpos de requisi
     }
     ```
 - **Requisição:**:  [requests/touristic-spots.ts](https://github.com/ericknathan/bluetrip/blob/main/src/helpers/requests/touristic-spots.ts#L4)
+- **Utilização:** [screens/private/TouristicSpots.ts](https://github.com/ericknathan/bluetrip/blob/main/src/screens/private/TouristicSpots.ts)
 
 ## Eventos
 ### Listagem
@@ -124,6 +128,7 @@ A seguir, você encontrará detalhes sobre as rotas, métodos, corpos de requisi
     }
     ```
 - **Requisição:**:  [requests/events.ts](https://github.com/ericknathan/bluetrip/blob/main/src/helpers/requests/events.ts#L4)
+- **Utilização:** [screens/private/Events.ts](https://github.com/ericknathan/bluetrip/blob/main/src/screens/private/Events.ts)
 
 ## Comércios locais
 ### Listagem
@@ -141,6 +146,7 @@ A seguir, você encontrará detalhes sobre as rotas, métodos, corpos de requisi
     }
     ```
 - **Requisição:**:  [requests/local-business.ts](https://github.com/ericknathan/bluetrip/blob/main/src/helpers/requests/local-business.ts#L4)
+- **Utilização:** [screens/private/Commerces.ts](https://github.com/ericknathan/bluetrip/blob/main/src/screens/private/Commerces.ts)
 
 ## Reservas
 ### Criar reserva
@@ -165,6 +171,7 @@ A seguir, você encontrará detalhes sobre as rotas, métodos, corpos de requisi
     { "message": "Reserva criada com sucesso" }
     ```
 - **Requisição:**:  [requests/reservation.ts](https://github.com/ericknathan/bluetrip/blob/main/src/helpers/requests/reservation.ts#L4)
+- **Utilização:** [screens/private/Reservation.ts](https://github.com/ericknathan/bluetrip/blob/main/src/screens/private/Reservation.ts)
 
 ## Identificação de espécies
 ### Identificar espécie
@@ -188,8 +195,10 @@ A seguir, você encontrará detalhes sobre as rotas, métodos, corpos de requisi
     ```TS
     // Status: 200
     {
-        "name": "Peixe Dourado",
+        "name": "Peixe Dourado", 
         "score": 99.745,
         "type": "Peixe"
     }
     ```
+- **Requisição:**:  [requests/specie-identifier.ts](https://github.com/ericknathan/bluetrip/blob/main/src/helpers/requests/specie-identifier.ts#L4)
+- **Utilização:** [screens/private/Scanner/SpecieIdentifier/index.ts](https://github.com/ericknathan/bluetrip/blob/main/src/screens/private/Scanner/SpecieIdentifier/index.ts)
