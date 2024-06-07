@@ -19,6 +19,7 @@ export function TouristSpotsScreen() {
     popular: TouristicSpotModel[];
     recommended: TouristicSpotModel[];
   }>();
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     async function getTouristicSpotsList() {
@@ -50,24 +51,33 @@ export function TouristSpotsScreen() {
     <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
       <Header title="Pontos turísticos" />
 
-      <SearchBar placeholder="Busque pelo nome do ponto turístico" />
+      <SearchBar
+        placeholder="Busque pelo nome do ponto turístico"
+        onSearch={setSearchQuery}
+      />
 
       <View style={styles.container}>
         <DataSection
           title="Perto de você"
-          data={touristicSpots?.near}
+          data={touristicSpots?.near.filter((touristicSpot) =>
+            touristicSpot.name.toLowerCase().includes(searchQuery.toLowerCase())
+          )}
           renderItem={({ item }) => <TouristicSpotCard data={item} />}
           ListEmptyComponent={EmptySkeleton}
         />
         <DataSection
           title="Mais populares"
-          data={touristicSpots?.popular}
+          data={touristicSpots?.popular.filter((touristicSpot) =>
+            touristicSpot.name.toLowerCase().includes(searchQuery.toLowerCase())
+          )}
           renderItem={({ item }) => <TouristicSpotCard data={item} />}
           ListEmptyComponent={EmptySkeleton}
         />
         <DataSection
           title="Recomendados para você"
-          data={touristicSpots?.recommended}
+          data={touristicSpots?.recommended.filter((touristicSpot) =>
+            touristicSpot.name.toLowerCase().includes(searchQuery.toLowerCase())
+          )}
           renderItem={({ item }) => <TouristicSpotCard data={item} />}
           ListEmptyComponent={EmptySkeleton}
         />

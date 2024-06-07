@@ -19,9 +19,12 @@ export function SearchBar({ placeholder, onSearch }: SearchBarProps) {
         hideErrorMessage
         placeholder={placeholder}
         value={query}
-        onChangeText={setQuery}
+        onChangeText={(text) => {
+          setQuery(text);
+          onSearch?.(text);
+        }}
       />
-      <Button style={{ width: 48 }} onPress={() => onSearch?.(query)}>
+      <Button style={{ width: 48 }}>
         <MagnifyingGlass color={theme.white} />
       </Button>
     </View>

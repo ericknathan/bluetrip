@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 
 export function CommercesScreen() {
   const [commerces, setCommerces] = useState<LocalBusinessModel[]>();
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     async function getEventsList() {
@@ -31,12 +32,25 @@ export function CommercesScreen() {
     <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
       <Header title="Comércios locais" />
 
-      <SearchBar placeholder="Busque pelo nome do comércio" />
+      <SearchBar
+        placeholder="Busque pelo nome do comércio"
+        onSearch={setSearchQuery}
+      />
 
       <View style={styles.container}>
-        {commerces?.map((commerce) => (
-          <LocalBusinessCard data={commerce} key={commerce.id} />
-        ))}
+        {commerces
+          ?.filter(
+            (commerce) =>
+              commerce.tradeName
+                .toLowerCase()
+                .includes(searchQuery.toLowerCase()) ||
+              commerce.businessCategory
+                .toLowerCase()
+                .includes(searchQuery.toLowerCase())
+          )
+          .map((commerce) => (
+            <LocalBusinessCard data={commerce} key={commerce.id} />
+          ))}
       </View>
     </ScrollView>
   );

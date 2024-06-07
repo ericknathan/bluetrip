@@ -12,6 +12,7 @@ export function EventsScreen() {
     next: EventModel[];
     suggestions: EventModel[];
   }>();
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     async function getEventsList() {
@@ -40,18 +41,25 @@ export function EventsScreen() {
     <ScrollView style={{ flex: 1 }}>
       <Header title="Eventos" />
 
-      <SearchBar placeholder="Busque pelo nome do evento" />
+      <SearchBar
+        placeholder="Busque pelo nome do evento"
+        onSearch={setSearchQuery}
+      />
 
       <View style={styles.container}>
         <DataSection
           title="Próximos eventos"
-          data={events?.next}
+          data={events?.next.filter((event) =>
+            event.name.toLowerCase().includes(searchQuery.toLowerCase())
+          )}
           renderItem={({ item }) => <EventCard data={item} />}
           ListEmptyComponent={EmptySkeleton}
         />
         <DataSection
           title="Sugestões para você"
-          data={events?.suggestions}
+          data={events?.suggestions.filter((event) =>
+            event.name.toLowerCase().includes(searchQuery.toLowerCase())
+          )}
           renderItem={({ item }) => <EventCard data={item} />}
           ListEmptyComponent={EmptySkeleton}
         />
