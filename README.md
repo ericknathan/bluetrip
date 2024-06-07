@@ -11,6 +11,9 @@ Bluetrip é uma aplicação mobile de turismo focada em oceanos, rios e lagos. O
 - **Scanner 3D:** Um scanner que renderiza modelos 3D acompanhados de informações sobre espécies ou partes do ponto turístico.
 - **Identificador de Espécies:** Um classificador de espécies utilizando inteligência artificial para identificar e fornecer informações sobre diferentes espécies aquáticas.
 
+# 🎥 Pré-visualização do projeto
+https://github.com/ericknathan/bluetrip/assets/53922235/35d9aec8-0918-49f9-8e84-65ab60e82c41
+
 ## 👥 Equipe
 Este projeto está sendo desenvolvido pelos seguintes membros:
 
